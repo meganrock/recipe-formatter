@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    margin: 20px;
+}
+
+h1{
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
+h2{
+    color: #69418b;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
+
+ul li{
+    list-style-type: none;
+}
+
+ol li{
+    list-style-type: decimal;
+}
+
+.color-stripe{
+    background-color: #69418b;
+    color: blue;
+    border: solid 2px black;
+    width: 100vw;
+    height: 20px;
+}
