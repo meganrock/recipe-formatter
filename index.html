@@ -8,22 +8,42 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     </head>
-    <body>
+    <body class="homepage">
         <header>
             <h1>Recipe Formatter</h1>
+            <nav class="flexbox">
+                <a href="index.html">Step 1: Upload the recipe</a>
+                <a href="edit.html">Step 2: Edit the recipe</a>
+                <a>Step 3: Format the recipe</a>
+                <a>Step 4: Print the recipe</a>
+            </nav>
         </header>
         <main>
-            <div class="flexbox">
+            <div>
                 <section>
                     <h2>Copy and paste a URL</h2>
                     <form id="recipe-text">
-                        <textarea rows="30" cols="80" name="recipe"></textarea>
+                        <input type="text" name="recipe" size="100"></input>
                         <button type="submit">Submit</button>
+                        <label for="format">Choose your format:</label>
+                        <select id="format" name="format">
+                            <option value="sides" selected>Side by side</option>
+                            <option value="top">Top and bottom</option>
+                        </select>
                     </form>
+                    <!-- <h2>or copy and paste a recipe, using the headings show below as a guideline</h2>
+                    <form id="recipe-other">
+                        <textarea name="recipe" rows="50" cols="100" placeholder="Ingredients&#10;-rice&#10;-water&#10;-broccoli"></textarea>
+                        <button type="submit">Submit</button>
+                    </form> -->
                 </section>
-                <section id="results">
-                    <h2>results:</h2>
-                </section>
+                <div class="flexbox">
+                    <section id="results">
+                    <!-- Recipe content will go here -->
+                    </section>
+                    <section id="confirm-results">
+                    </section>
+                </div>
                 <!-- <span>OR</span>
                 <section>
                     <h2>Choose a file</h2>

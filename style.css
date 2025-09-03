@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+.homepage nav > a {
+    font-weight: 600;
+}
+
 .drop-zone{
     height: 450px;
     width: 600px;
@@ -12,5 +16,32 @@
     align-items: center ;
     justify-content: center;
     flex-direction: column;
+}
+
+#results {
+    width: 50vw;
+}
+
+.big-button {
+    width: 200px;
+    height: 100px;
+    color: white;
+    font-weight: 300px;
+}
+
+.yes-button{
+    background-color: green;
+}
+
+.no-button{
+    background-color: red;
+}
+
+li {
+    list-style: none;
+}
+
+.directions li{
+    list-style: decimal;
 }
 
