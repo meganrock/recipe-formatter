@@ -14,10 +14,89 @@
             <nav class="flexbox">
                 <a href="index.html">Step 1: Upload the recipe</a>
                 <a href="edit.html">Step 2: Edit the recipe</a>
-                <a>Step 3: Format the recipe</a>
-                <a>Step 4: Print the recipe</a>
+                <a href="format.html">Step 3: Format the recipe</a>
+                <a href="print.html">Step 4: Print the recipe</a>
             </nav>
         </header>
         <h1>edit page</h1>
+
+
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />    
+
+        <h1>Editor</h1>
+        <div id="editor">
+            <!-- <p>Core build with no theme, formatting, non-essential modules</p> -->
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+        <script>
+        //  
+        const toolbarOptions = [
+            ['bold', 'italic', 'underline'],        // toggled buttons
+            ['link', 'image'],
+
+            // [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            // [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }],          // dropdown with defaults from theme
+            [{ 'align': [] }],
+
+            // ['clean']                                         // remove formatting button
+        ];
+
+        // const quill = new Quill('#editor', {
+        //     theme: 'snow', // Specify theme in configuration
+        //     formats: ['bold', 'italic', 'underline', 'link', 'list'], // Only allow these formats
+        //     modules: {
+        //         toolbar: [
+        //         ['bold', 'italic', 'underline'],
+        //         ['link'],
+        //         [{ 'list': 'ordered' }, { 'list': 'bullet' }]
+        //         ]
+        //     }
+        // });
+
+        const quill = new Quill('#editor', {
+            modules: {
+                toolbar: toolbarOptions
+            },
+            theme: 'snow'
+        });
+        </script>
+
+
+        <button id="test">
+            Test
+        </button>
+
+
+    
+        <script>
+            const Parchment = Quill.import('parchment');
+            const MyCustomClass = new Parchment.ClassAttributor('myCustomClass', 'results-box', {
+            scope: Parchment.Scope.BLOCK, // or INLINE, depending on your needs
+            });
+            Quill.register(MyCustomClass, true);
+
+            const editHtml = localStorage.getItem('recipe-html')
+            let testbutton = document.getElementById('test')
+            // testbutton.addEventListener('click', function() {
+                // const value = `<h1>New content here</h1>`
+                quill.clipboard.dangerouslyPasteHTML(0, editHtml)
+                // quill.setContents(delta, 'silent')
+            // });
+            testbutton.addEventListener('click', function() {
+                const htmlContent = quill.root.innerHTML;
+                console.log(htmlContent);
+                localStorage.setItem('recipe-html', htmlContent)
+                window.location.href = "format.html";
+            })
+        </script>
+
 </body>
 </html>
+
+

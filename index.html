@@ -14,8 +14,8 @@
             <nav class="flexbox">
                 <a href="index.html">Step 1: Upload the recipe</a>
                 <a href="edit.html">Step 2: Edit the recipe</a>
-                <a>Step 3: Format the recipe</a>
-                <a>Step 4: Print the recipe</a>
+                <a href="format.html">Step 3: Format the recipe</a>
+                <a href="print.html">Step 4: Print the recipe</a>
             </nav>
         </header>
         <main>
@@ -23,13 +23,87 @@
                 <section>
                     <h2>Copy and paste a URL</h2>
                     <form id="recipe-text">
-                        <input type="text" name="recipe" size="100"></input>
+                        
+                        <fieldset class="flexbox">
+                            <legend>What information do you want to include on your recipe?</legend>
+                            <div class="three-checks">
+                                <div>
+                                    <input type="checkbox" id="title" name="recipe-info[]" value="title" checked>
+                                    <label for="title">Title</label>
+                                </div>
+                                
+                                <div>
+                                    <input type="checkbox" id="ingredients" name="recipe-info[]" value="ingredients" checked>
+                                    <label for="ingredients">Ingredients</label>
+                                </div>
+                                
+                                <div>
+                                    <input type="checkbox" id="directions" name="recipe-info[]" value="directions" checked>
+                                    <label for="directions">Directions</label>
+                                </div> 
+                            </div>
+
+                            <div class="three-checks">
+                                <div>
+                                    <input type="checkbox" id="servings" name="recipe-info[]" value="servings">
+                                    <label for="servings">Servings</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="author" name="recipe-info[]" value="author">
+                                    <label for="author">Author</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="link" name="recipe-info[]" value="link">
+                                    <label for="link">Link</label>
+                                </div>   
+                            </div>
+                            
+                            <div class="three-checks">
+                                <div>
+                                    <input type="checkbox" id="prep-time" name="recipe-info[]" value="prep-time" >
+                                    <label for="prep-time">Prep Time</label>
+                                </div>
+                                
+                                <div>
+                                    <input type="checkbox" id="cook-time" name="recipe-info[]" value="cook-time" >
+                                    <label for="cook-time">Cook Time</label>
+                                </div>
+                                <div>
+                                     <input type="checkbox" id="total-time" name="recipe-info[]" value="total-time" >
+                                    <label for="total-time">Total Time</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                               
+                        <fieldset class="flexbox">
+                            <legend>Add a recipe with:</legend>
+                            <div>
+                                <input type="radio" id="url" name="recipe-input" value="url" checked>
+                                <label for="url">Website URL</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="text" name="recipe-input" value="text">
+                                <label for="text">Text</label>
+                            </div>
+                        </fieldset>
+
+                       
+                        <input type="text" name="recipe-url" size="100" placeholder="Type or paste URL here" id="url-input"></input>
+                    
+                        <div id="text-input">
+                            <textarea name="recipe-text" rows="30" cols="90" placeholder="Type or paste recipe text here"></textarea>
+                            <div id="filler-rectangle"></div>
+                        </div>
+
                         <button type="submit">Submit</button>
-                        <label for="format">Choose your format:</label>
+                    
+                        
+
+                        <!-- <label for="format">Choose your format:</label>
                         <select id="format" name="format">
                             <option value="sides" selected>Side by side</option>
                             <option value="top">Top and bottom</option>
-                        </select>
+                        </select> -->
                     </form>
                     <!-- <h2>or copy and paste a recipe, using the headings show below as a guideline</h2>
                     <form id="recipe-other">
@@ -37,6 +111,7 @@
                         <button type="submit">Submit</button>
                     </form> -->
                 </section>
+                <div class="loader" id="loader"></div>
                 <div class="flexbox">
                     <section id="results">
                     <!-- Recipe content will go here -->

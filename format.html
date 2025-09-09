@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Recipe Formatter</title>
+        <link rel="stylesheet" href="/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1>Recipe Formatter</h1>
+            <nav class="flexbox">
+                <a href="index.html">Step 1: Upload the recipe</a>
+                <a href="edit.html">Step 2: Edit the recipe</a>
+                <a href="format.html">Step 3: Format the recipe</a>
+                <a href="print.html">Step 4: Print the recipe</a>
+            </nav>
+        </header>
+        <div id="content">
+            <h1>formatting page</h1>
+        </div>
+        
+        <form>
+            <label for="recipe-category">What section of your cookbook will this be in?</label>
+            <select id="recipe-category" name="recipe-category">
+                <option value="no-category" selected>None</option>
+                <option value="apps">Apps & Snacks</option>
+                <option value="beverages">Beverages & Blends</option>
+                <option value="bread">Bread & Rolls</option>
+                <option value="soup-sammies">Soup & Sammies</option>
+                <option value="salads">Salads & Dressings</option>
+                <option value="main-courses">Main Courses</option>
+                <option value="sauces-sides">Sauces & Sides</option>
+                <option value="pasta-grains">Pasta & Grains</option>
+                <option value="mixes-marinades">Mixes & Marinades</option>
+                <option value="red-meat">Beef & Red Meats</option>
+                <option value="poultry-pork">Poultry & Pork</option>
+                <option value="fish">Fish & Seafood</option>
+                <option value="sweets">Sweets & Treats</option>
+                <option value="cakes-pies">Cakes & Pies</option>
+                <option value="cookies">Cookies & Bars</option>
+                <option value="breakfast">Breakfast & Brunch</option>
+                <option value="air-fryer">Air Fryer</option>
+                <option value="slow-cooker">Slow Cooker</option>
+                <option value="instant-pot">Instant Pot</option>
+                <option value="seasonal">Seasonal & Holiday</option>
+            </select>
+
+            <fieldset class="flex-column">
+                <legend>Choose your format:</legend>
+                <div>
+                    <input type="radio" id="moms" name="recipe-format" value="moms">
+                    <label for="moms"><img src="moms-template.png">Mom's Format</label>
+                </div>
+                <div>
+                    <input type="radio" id="sidebyside" name="recipe-format" value="sidebyside">
+                    <label for="sidebyside"><img src="plain-text-template.png">Plain Text, side by side</label>
+                </div>
+            </fieldset>
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+
+        <script>
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const category = formData.get('recipe-category');
+            const format = formData.get('recipe-format');
+            
+            try {
+                const response = await fetch('http://127.0.0.1:3000/generate-pdf', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                    category: category,
+                    format: format,
+                    recipeHtml: localStorage.getItem('recipe-html')
+                })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    alert('PDF generated successfully!');
+                    window.location.href = 'print.html';
+                } else {
+                    alert('Error generating PDF: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error generating PDF');
+            }
+        });
+        </script>
+
+</body>
+</html>
+
+
