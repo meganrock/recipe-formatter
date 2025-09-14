@@ -49,13 +49,14 @@ async function handleFormSubmit() {
     if (inputMethod === 'url') {
         recipeValue = document.getElementById('url-input').value;
     } else if (inputMethod === 'text') {
-        recipeValue = document.querySelector('#text-input textarea').value;
+        recipeValue = document.getElementById('text-input').value;
     }
 
     // Remove the existing recipe fields and add the correct one
     fd.delete('recipe-url');
     fd.delete('recipe-text');
     fd.append('recipe', recipeValue);
+    console.log(recipeValue);
 
     const urlEncoded = new URLSearchParams(fd).toString();
     try {
@@ -80,7 +81,6 @@ async function handleFormSubmit() {
             <body>
                 <div class='results-box'>
             `
-
             if ((JSON.stringify(selectedInfo)).includes('title')){
                 customHtml = customHtml + `\n<h1>${recipeData.title}</h1>`;
             }
@@ -133,6 +133,36 @@ async function handleFormSubmit() {
             </body>`;
 
 
+
+
+            // customHtml = localStorage.getItem('recipe-html');
+
+            // Custom HTML content for the PDF
+            // const customHtml = `
+            //     <body>
+            //         <header class="flex">  
+            //         </header>
+            //         <h1>${recipeData.title}</h1>
+            //         <span>${recipeData.servings}</span>          
+            //         <div class="flex main-recipe">
+            //             <div class="ingredients">
+            //                 <h2>Ingredients</h2>
+            //                 <ul>
+            //                     ${recipeData.ingredients.map(ingredient => `<li>• ${ingredient}</li>`).join('')}
+            //                 </ul>
+            //             </div>
+            //             <div class="directions">
+            //             <h2>Directions</h2>
+            //             <ol>
+            //                 ${recipeData.directions.map(direction => `<li>${direction}</li>`).join('')}
+            //             </ol>
+                        
+            //         </div>
+            //         </div>
+            //     </body>
+            // `;
+
+            
             // const customHtml = `
             //         <body>
             //             <header class="flex">
@@ -169,14 +199,14 @@ async function handleFormSubmit() {
                  <a href="format.html"><button class="big-button yes-button" id="no-edit-button">Yes, take me to formatting.</button></a>
                 <a href="edit.html"><button class="big-button no-button" id="need-edit-button">No, I need to edit the text.</button></a>
                 `)
+            let editButton = document.getElementById('need-edit-button');
+            editButton.addEventListener('click', function(){
+                localStorage.setItem('recipe-html', customHtml)
+            })
+
         }
         
-        let editButton = document.getElementById('need-edit-button')
-
-        editButton.addEventListener('click', function(){
-            // localStorage.setItem('recipe-html', customHtml)
-        })
-
+        
     } catch (error) {
         console.error('Error:', error);
     }

@@ -12,15 +12,7 @@ header_tags = ["h1", "h2", "h3", "h4", "h5", "h6"]
 ugly_characters = '▢' 
 
 
-recipe_name=""
-ingredients_array = []
-directions_array = []
-serving_size=""
-author=""
-link=""
-prep_time=""
-cook_time=""
-total_time=""
+
 
 
 # wordpress_classes = ['saltandlavender', 'cookingclassy', 'crazyforcrust', 
@@ -37,35 +29,48 @@ total_time=""
 
 #get url from the form
 data = json.loads(sys.argv[1])
-url=data.get('recipe', '')
-recipe_link=url
 inputMethod = data.get('inputMethod')
+
+
+
+
 
 # url="https://www.allrecipes.com/recipe/228498/slow-cooker-baby-back-ribs/"
 # inputMethod='text'
 
-headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
-    }
-response = requests.get(url, headers=headers)
-soup = BeautifulSoup(response.content, 'html.parser')
 
 
-def checkURL():
-    # if any(item in url for item in wordpress_classes):
-    #      output = True
+def checkURL(soup):
     wordpress = soup.find("div", class_=re.compile("wprm",flags=re.IGNORECASE))
     if wordpress:
          return True
     
 
-if inputMethod == 'url':
+if inputMethod == 'url':  
+    url=data.get('recipe', '')
+    recipe_link=url
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+        }
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+
     try:
+
+        recipe_name=""
+        ingredients_array = []
+        directions_array = []
+        serving_size=""
+        author=""
+        link=""
+        prep_time=""
+        cook_time=""
+        total_time=""
+
         scraper = scrape_me(url)
-        # scraper.to_json()
-        # for a complete list of methods:
-        # help(scraper)
-        # Collect data into structured format
+
         prep_time = int(scraper.prep_time())
         prep_time_hours = int(prep_time/60)
         prep_time_min = int(prep_time%60)
@@ -113,7 +118,19 @@ if inputMethod == 'url':
 
         }
     except:
-        if checkURL():
+        if checkURL(soup):
+
+
+            recipe_name=""
+            ingredients_array = []
+            directions_array = []
+            serving_size=""
+            author=""
+            link=""
+            prep_time=""
+            cook_time=""
+            total_time=""
+
             recipe_name = soup.find(header_tags, class_="wprm-recipe-name")
             if not (isinstance(recipe_name, str)) and recipe_name:
                 recipe_name = recipe_name.text.strip()
@@ -194,18 +211,99 @@ if inputMethod == 'url':
         }
 
 
-if inputMethod == 'text':
-        recipe_data = {
-            "title": "Manual Recipe Entry",
-            "ingredients": [],
-            "directions": [],
-            "servings": "",
-            "author": "",
-            "link": "",
-            "prep_time": "",
-            "cook_time": "",
-            "total_time": "",
-        }
+elif inputMethod == 'text':
+    recipe_text=data.get('recipe', '').strip()
 
-print(json.dumps(recipe_data))
+
+    recipe_name=""
+    ingredients_array = []
+    directions_array = []
+    serving_size=""
+    author=""
+    link=""
+    prep_time=""
+    cook_time=""
+    total_time=""
+
+    # remove extra white lines
+    result = re.sub(r"\n\n", r"\n", recipe_text, count=0, flags=re.MULTILINE)
+    # # Removes unicode
+    result = re.sub(r'[^\w\s\.,!?;:()\[\]{}"\'/-]', '', result, flags=re.UNICODE)
+
+    # split up ingredients section
+    result = re.split("Ingredients", result, flags=re.IGNORECASE, maxsplit=1)
+
+    introduction = result[0]
+    
+    if(re.search("Directions", result[1], re.MULTILINE | re.IGNORECASE)):
+        result = re.split("Directions", result[1],  flags=re.IGNORECASE, maxsplit=1)
+    elif(re.search("Instructions", result[1], re.MULTILINE.IGNORECASE)):
+        result = re.split("Instructions", result[1], flags=re.IGNORECASE, maxsplit=1)
+
+    ingredients = result[0]
+    directions = result[1]
+
+    #split up introduction where lines got bunched together
+    introduction = re.split("  |\n", introduction, maxsplit=0)
+
+    for index, item in enumerate (introduction):
+        if index == 0:
+            recipe_name = item
+        if(re.match(r'Yield:|Servings:|Serves:', item, re.IGNORECASE)):
+            servings = re.split(': ', item)
+            servings = servings[1]
+            servings = str(servings) + "servings"
+        elif(re.match(r'Prep Time:', item, re.IGNORECASE)):
+            prep_time = item
+        elif(re.match(r'Cook Time:', item, re.IGNORECASE)):
+            cook_time = item
+        elif(re.match(r'Total Time:', item, re.IGNORECASE)):
+            total_time = item
+
+    # for index, item in enumerate (introduction):
+    #     if (item == '') or (re.match(r"By|Author|Description", item, flags=re.MULTILINE.IGNORECASE)) or (re.match(r'^.*[.!?]', item, flags=re.MULTILINE)):
+    #         introduction.pop(index)
+   
+
+    subheading_pattern = r'([^:]+:)'
+    ingredient_pattern = r'(?:\d+(?:\.\d+)?|\d+/\d+|\d+\s+\d+/\d+)\s+.+'
+
+
+    ingredients = re.split(r"\n", ingredients, maxsplit=0, flags=re.MULTILINE | re.IGNORECASE)
+
+    for index, item in enumerate(ingredients):
+        if item == '':
+            ingredients.pop(index)
+        # elif (re.match(ingredient_pattern, item)):
+        else:
+            ingredients_array.append(item)
+
+
+    # list directions with numbers
+    directions = re.sub(r'^\d*\.?\d+$', '', directions, flags=re.UNICODE)
+    directions = re.split(r"\n", directions, maxsplit=0, flags=re.IGNORECASE | re.MULTILINE)
+    
+    for index, item in enumerate(directions):
+        if item == '':
+            directions.pop(index)
+    for index, item in enumerate(directions):
+        # print(f"{index+1}. {item}")
+        directions_array.append(item)
+
+
+
+
+    recipe_data = {
+        "title": recipe_name,
+        "ingredients": ingredients_array,
+        "directions": directions_array,
+        "servings": servings,
+        "author": "",
+        "link": "",
+        "prep_time": prep_time,
+        "cook_time": cook_time,
+        "total_time": total_time,
+    }
+
+print(json.dumps(recipe_data, ensure_ascii=False, indent=None))
 

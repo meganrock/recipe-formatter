@@ -74,59 +74,59 @@ app.post('/upload', function(req, res) {
                 throw new Error('Empty output from Python script');
             }
             const recipeData = JSON.parse(pythonOutput.trim());
-            let customHtml = `
-            <body>
-            `
+        //     let customHtml = `
+        //     <body>
+        //     `
 
-            // creating custom HTML based on checked inputs
-            if (req.body.recipeInfo.includes('title')){
-                customHtml = customHtml + `\n<h1>${recipeData.title}</h1>`;
-            }
+        //     // creating custom HTML based on checked inputs
+        //     if (req.body.recipeInfo.includes('title')){
+        //         customHtml = customHtml + `\n<h1>${recipeData.title}</h1>`;
+        //     }
 
-            if (req.body.recipeInfo.includes('servings')){
-                customHtml = customHtml + `\n<span>${recipeData.servings}</span>`;
-            }
+        //     if (req.body.recipeInfo.includes('servings')){
+        //         customHtml = customHtml + `\n<span>${recipeData.servings}</span>`;
+        //     }
 
-            if (req.body.recipeInfo.includes('author')){
-                customHtml = customHtml + `\n<span>Recipe by: ${recipeData.author}</span>`;
-            }
+        //     if (req.body.recipeInfo.includes('author')){
+        //         customHtml = customHtml + `\n<span>Recipe by: ${recipeData.author}</span>`;
+        //     }
 
-            if (req.body.recipeInfo.includes('link')){
-                customHtml = customHtml + `\n<span><a href=${recipeData.link}>See More</a></span>`;
-            }
+        //     if (req.body.recipeInfo.includes('link')){
+        //         customHtml = customHtml + `\n<span><a href=${recipeData.link}>See More</a></span>`;
+        //     }
 
-            if (req.body.recipeInfo.includes('prep-time')){
-                customHtml = customHtml + `\n<span>Prep Time: ${recipeData.prep_time}</span>`;
-            }
+        //     if (req.body.recipeInfo.includes('prep-time')){
+        //         customHtml = customHtml + `\n<span>Prep Time: ${recipeData.prep_time}</span>`;
+        //     }
 
-            if (req.body.recipeInfo.includes('cook-time')){
-                customHtml = customHtml + `\n<span>Cook Time: ${recipeData.cook_time}</span>`;
-            }
+        //     if (req.body.recipeInfo.includes('cook-time')){
+        //         customHtml = customHtml + `\n<span>Cook Time: ${recipeData.cook_time}</span>`;
+        //     }
 
-            if (req.body.recipeInfo.includes('total-time')){
-                customHtml = customHtml + `\n<span>Total Time: ${recipeData.total_time}</span>`;
-            }
+        //     if (req.body.recipeInfo.includes('total-time')){
+        //         customHtml = customHtml + `\n<span>Total Time: ${recipeData.total_time}</span>`;
+        //     }
 
-            if (req.body.recipeInfo.includes('ingredients')){
-                customHtml = customHtml + `
-                <div class="ingredients">
-                    <h2>Ingredients</h2>
-                        <ul>
-                            ${recipeData.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
-                        </ul>
-                </div>`
-            }
+        //     if (req.body.recipeInfo.includes('ingredients')){
+        //         customHtml = customHtml + `
+        //         <div class="ingredients">
+        //             <h2>Ingredients</h2>
+        //                 <ul>
+        //                     ${recipeData.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+        //                 </ul>
+        //         </div>`
+        //     }
 
-            if (req.body.recipeInfo.includes('directions')){
-                customHtml = customHtml + `
-                <div class="ingredients">
-                    <h2>Directions</h2>
-                        <ol>
-                            ${recipeData.directions.map(direction => `<li>${direction}</li>`).join('')}
-                        </ol>
-                </div>`
-            }
-            customHtml = customHtml + '\n</body>';
+        //     if (req.body.recipeInfo.includes('directions')){
+        //         customHtml = customHtml + `
+        //         <div class="ingredients">
+        //             <h2>Directions</h2>
+        //                 <ol>
+        //                     ${recipeData.directions.map(direction => `<li>${direction}</li>`).join('')}
+        //                 </ol>
+        //         </div>`
+        //     }
+        //     customHtml = customHtml + '\n</body>';
 
             // customHtml = localStorage.getItem('recipe-html');
 
