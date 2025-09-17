@@ -1,9 +1,6 @@
 const form=document.getElementById('recipe-text');
 const resultsSection = document.getElementById('results');
 const confirmResults = document.getElementById('confirm-results')
-const loader = document.getElementById('loader');
-
-
 
 function getRadioValue() {
   const selectedRadio = document.querySelector('input[name="recipe-input"]:checked');
@@ -25,12 +22,22 @@ function getRadioValue() {
 form.addEventListener('change', getRadioValue);
 
 form.addEventListener('submit', (e) => {
+
     e.preventDefault();
     e.stopPropagation();
+    addLoading();
     handleFormSubmit();
     return false;
 })
 
+function addLoading(){
+    let loadingHTML = `
+        <div class="loader"></div>
+    `
+    resultsSection.innerHTML = "";
+    confirmResults.innerHTML = "";
+    resultsSection.insertAdjacentHTML('afterbegin', loadingHTML);
+}
 
 
 async function handleFormSubmit() {
@@ -78,8 +85,7 @@ async function handleFormSubmit() {
             // creating custom HTML based on checked inputs
 
             let customHtml = `
-            <body>
-                <div class='results-box'>
+            <div class='results-box'>
             `
             if ((JSON.stringify(selectedInfo)).includes('title')){
                 customHtml = customHtml + `\n<h1>${recipeData.title}</h1>`;
@@ -130,14 +136,45 @@ async function handleFormSubmit() {
             }
             customHtml = customHtml + `\n
                 </div>
-            </body>`;
+            `;
 
 
 
 
             // customHtml = localStorage.getItem('recipe-html');
 
-            // Custom HTML content for the PDF
+            
+            resultsSection.innerHTML = "";
+            confirmResults.innerHTML = "";
+            resultsSection.insertAdjacentHTML('afterbegin', '<h2>Your recipe text looks like this:</h2>');
+            resultsSection.insertAdjacentHTML('beforeend', customHtml);
+            localStorage.setItem('recipe-html', customHtml)
+            confirmResults.insertAdjacentHTML('afterbegin', `
+                <h2>Does this look good?</h2>
+                <div class="flex-column">
+                    <a href="format.html"><button class="big-button yes-button" id="no-edit-button">Yes, take me to formatting.</button></a>
+                    <a href="edit.html"><button class="big-button no-button" id="need-edit-button">No, I need to edit the text.</button></a>
+                </div>
+                `)
+            let editButton = document.getElementById('need-edit-button');
+            editButton.addEventListener('click', function(){
+                localStorage.setItem('recipe-html', customHtml)
+            })
+
+        }
+        
+        
+    } catch (error) {
+        console.error('Error:', error);
+    }
+    return false;
+}
+
+
+
+
+
+// Custom HTML content for the PDF
             // const customHtml = `
             //     <body>
             //         <header class="flex">  
@@ -189,26 +226,4 @@ async function handleFormSubmit() {
             //             </div>
             //         </body>
             //     `;
-            resultsSection.innerHTML = "";
-            confirmResults.innerHTML = "";
-            resultsSection.insertAdjacentHTML('afterbegin', '<h2>Your recipe text looks like this:</h2>');
-            resultsSection.insertAdjacentHTML('beforeend', customHtml);
-            localStorage.setItem('recipe-html', customHtml)
-            confirmResults.insertAdjacentHTML('afterbegin', `
-                <h2>Does this look good?</h2>
-                 <a href="format.html"><button class="big-button yes-button" id="no-edit-button">Yes, take me to formatting.</button></a>
-                <a href="edit.html"><button class="big-button no-button" id="need-edit-button">No, I need to edit the text.</button></a>
-                `)
-            let editButton = document.getElementById('need-edit-button');
-            editButton.addEventListener('click', function(){
-                localStorage.setItem('recipe-html', customHtml)
-            })
 
-        }
-        
-        
-    } catch (error) {
-        console.error('Error:', error);
-    }
-    return false;
-}

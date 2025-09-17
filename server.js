@@ -53,7 +53,6 @@ app.post('/upload', function(req, res) {
         encoding: 'utf8'
     });
 
-
     pythonProcess.stdout.on('data', (data) => {
         // console.log(`Node output: ${data}`);
         pythonOutput += data.toString();
@@ -194,7 +193,7 @@ app.post('/generate-pdf', async function(req, res) {
             // } else if (req.body.format === 'sides') {
             //     cssFile = 'top-bottom.css';
             } else if (req.body.format === 'moms') {
-                cssFile = 'moms-format.css';
+                cssFile = 'blue.css';
             }
 
             let cssContent = fs.readFileSync(cssFile, 'utf8');

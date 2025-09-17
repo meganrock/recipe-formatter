@@ -1,106 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body{
+    height: 100%;
+
+}
+
+main{
+    padding: 30px;
+    background-color: #F5F1E6;  
+    min-height: 100vh;
+}
+
 .flexbox {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: top;
 }
 
-.homepage nav > a {
-    font-weight: 600;
-}
-
-.drop-zone{
-    height: 450px;
-    width: 600px;
-    border: 2px gray dashed;
-    text-align: center;
-    align-items: center ;
-    justify-content: center;
+.flex-column{
+    display: flex;
     flex-direction: column;
 }
 
+
 #results {
     width: 50vw;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+}
+
+
+#results h1{
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .big-button {
     width: 200px;
-    height: 100px;
-    color: white;
+    height: 70px;
     font-weight: 300px;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
 }
 
-
-.big-button a:link{
-    color:white;
-    text-decoration: none;
-}
-
-.big-button a:active{
-    color:white;
-    text-decoration: none;
-}
-
-.big-button a:visited{
-    color:white;
+.big-button a:any-link{
+    color:F5F1E6;
     text-decoration: none;
 }
 
 .yes-button{
-    background-color: green;
+    color: #F5F1E6;
+    background-color: #376D48;
+    border: none;
+    font-family: "Orelega One", serif;
 }
 
 .yes-button:hover{
-    background-color: darkgreen;
+    background-color: #135728;
+    
 }
 
 .no-button{
-    background-color: red;
+    color: #F5F1E6;
+    background-color: #5B0607;
+    border: none;
+    font-family: "Orelega One", serif;
+    
 }
 
 .no-button:hover{
-    background-color: darkred;
+    background-color: #330506;
 }
 
-li {
-    list-style-position: outside;
-}
 
-.ingredients li{
-    list-style-type:disc;
-}
-
-.directions li{
-    list-style-type: decimal;
-}
 
 .results-box{
     border: dashed 2px gray;
-    padding: 15px;
+    padding: 50px;
 }
 
-.three-checks{
-    display: flex;
-    flex-direction: column;
-    width: 10vw;
-}
 
-fieldset{
-    width:40vw;
-}
-
-fieldset>p{
-    width: 20px;
-}
-
-fieldset.flexbox{
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-}
-
-legend{
-    text-align: center;
-}
 
 label img{
     width: 200px;
@@ -131,23 +113,6 @@ input[type="radio"]:checked + label {
     flex-direction: column;
 } */
 
-.loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid gray; /* Blue */
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  animation: spin 2s linear infinite;
-  display:none;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
 #filler-rectangle{
     background-color: gray;
@@ -155,10 +120,7 @@ input[type="radio"]:checked + label {
     height: 60vh;
 }
 
-button[type='submit']{
-    background-color: lightblue;
-    align-self: center;
-}
+
 
 #url-input{
     display: block;
@@ -171,3 +133,212 @@ button[type='submit']{
     justify-items: center;
 }
 
+
+/* general styles to get started */
+
+ h1 {
+    font-family: "Orelega One", serif;
+    font-weight: 400;
+    font-size: 36px;
+    color: #364155;
+ }
+
+ h2{
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 20px;
+    color: #364155;
+ }
+
+
+ li {
+    list-style-position: outside;
+}
+
+.ingredients li{
+    list-style-type:disc;
+}
+
+.directions li{
+    list-style-type: decimal;
+}
+
+
+/* buttons */
+button[type='submit']{
+    background-color: #A8AEC6;
+    border: 2px solid #364155;
+    color: #364155;
+    border-radius: 5;
+    align-self: center;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 18;
+    font-weight: 600;
+    width: 100px;
+    height: 25px;
+}
+
+
+
+
+
+
+/* header styles */
+header{
+    color: #364155;
+    text-align: center;
+}
+
+header h1 {
+    font-family: "Orelega One", serif;
+    font-weight: 400;
+    font-size: 36px;
+    width: 100vw;
+    height: 10vh;
+    line-height: 10vh;
+    background-color: #C2785F;
+    padding: 10px auto;
+}
+
+nav{
+    height: 50%;
+    background-color: #A8AEC6;
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: 600;
+    opacity: 100%;
+}
+
+
+nav.flexbox {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav a:any-link{
+    color: #364155;
+    text-decoration: none;
+    padding: 100px auto;
+    width: 25vw;
+    height: 3em;
+    line-height: 3em;
+    text-align: center;
+    align-items: center;
+}
+
+nav a.current-page:any-link{
+    color: #C5DDCC;
+    background-image: url(Vector-2.svg);
+    background-size: cover;
+    background-position: center; /* Centers the image within the container */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+
+
+
+/* forms */
+fieldset{
+    text-decoration: none;
+    border: none;
+    width:20vw;
+}
+
+input, textarea{
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 16;
+    font-weight: 400px;
+}
+
+#url-input{
+    width: 50vw;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+
+
+/* fieldset>p{
+    width: 20px;
+} */
+
+fieldset.flexbox{
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+legend {
+    font-family: "Orelega One", serif;
+    color: #C2785F;
+    font-size: 20px;
+    border-bottom: 3px solid #C2785F;
+    text-align: left;
+}
+
+label {
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    text-wrap: wrap;
+}
+
+label[for="recipe-category"]{
+    font-family: "Orelega One", serif;
+    color: #C2785F;
+    font-size: 20px;
+    border-bottom: 3px solid #C2785F;
+    text-align: left;
+}
+
+.flexbox.recipe-input {
+    display: flex;
+    flex-direction: row;
+}
+
+.check-group{
+    display: flex;
+    flex-direction: column;
+    width: 10vw;
+}
+
+fieldset:has(.check-group){
+    display: flex;
+}
+
+
+
+/*   Loader style   */
+.loader {
+  border: 8px solid #A8AEC6; /* Light grey */
+  border-top: 8px solid #364155;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  margin: 100px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+/*editor*/
+#editor, div[role="toolbar"]{
+    background-color: white;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div[role="toolbar"]{
+    background-color: #A8AEC6;
+}
+
+#editor *{
+    font-family: arial;
+}

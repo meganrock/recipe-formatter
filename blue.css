@@ -1,0 +1,41 @@
+h1{
+    font: arial;
+    color: Blue;
+    font-size: 24px;
+}
+
+h2{
+    font: arial;
+    color: Blue;
+    font-size: 18px;
+}
+
+h3{
+    font: arial;
+    color: Blue;
+    font-size: 14px;
+}
+
+li{
+    font: arial;
+    color: lightblue;
+    font-size: 12px;
+}
+
+ul li{
+    list-style-type: disc;
+    list-style-position: inside
+}
+
+ol li{
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
+.ingredients{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.directions{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
