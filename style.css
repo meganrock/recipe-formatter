@@ -14,6 +14,9 @@ main{
     min-height: 100vh;
 }
 
+
+
+/* flexbox classes*/
 .flexbox {
     display: flex;
     justify-content: space-around;
@@ -25,17 +28,15 @@ main{
     flex-direction: column;
 }
 
-
-#results {
-    width: 50vw;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 20px;
+.centered-flex-column{
+    justify-content: center;
+    align-items: center;
 }
 
 
-#results h1{
-    font-family: Arial, Helvetica, sans-serif;
-}
+
+
+
 
 .big-button {
     width: 200px;
@@ -43,11 +44,17 @@ main{
     font-weight: 300px;
     border-radius: 10px;
     padding: 20px;
-    margin: 20px;
+    margin: 10px;
+    background-color: #d6dae9;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+.big-button:hover{
+    background-color: #535d83;
 }
 
 .big-button a:any-link{
-    color:F5F1E6;
+    color:#F5F1E6;
     text-decoration: none;
 }
 
@@ -55,7 +62,6 @@ main{
     color: #F5F1E6;
     background-color: #376D48;
     border: none;
-    font-family: "Orelega One", serif;
 }
 
 .yes-button:hover{
@@ -67,7 +73,6 @@ main{
     color: #F5F1E6;
     background-color: #5B0607;
     border: none;
-    font-family: "Orelega One", serif;
     
 }
 
@@ -77,42 +82,15 @@ main{
 
 
 
-.results-box{
-    border: dashed 2px gray;
-    padding: 50px;
-}
 
 
 
-label img{
-    width: 200px;
-    height: 270px;
-    border: 2px solid gray ;
-}
+
+
 
 fieldset div label{
     margin-bottom: 40px;
 }
-/* 
-input[type="radio"]{
-    appearance: none;
-}
-
-input[type="radio"]:checked + label img{
-    border: 2px solid green;
-
-}
-
-input[type="radio"]:checked + label {
-    background-color: green;
-    color: white;
-}
-
-.flex-column{
-    display: flex;
-    flex-direction: column;
-} */
-
 
 #filler-rectangle{
     background-color: gray;
@@ -262,12 +240,12 @@ input, textarea{
     width: 20px;
 } */
 
-fieldset.flexbox{
+/* fieldset.flexbox{
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
     align-items: flex-start;
-}
+} */
 
 legend {
     font-family: "Orelega One", serif;
@@ -341,4 +319,102 @@ div[role="toolbar"]{
 
 #editor *{
     font-family: arial;
+}
+
+
+.results-box{
+    border: dashed 2px gray;
+    padding: 50px;
+}
+
+#results, #print-preview{
+    padding: 20px;
+    width: 50vw;
+}
+
+#results *{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #364155;
+    text-align: left;
+    line-height: 1.5em;
+}
+
+#results>h2{
+    font-family: "Red Hat Display";
+}
+
+#results li{
+    list-style-position: inside;
+}
+
+#results h1{
+    font-size: 24px;
+    font-weight: 600px;
+}
+
+#print-preview img{
+    margin-top: 30px;
+    border: 1px solid darkgray;
+    width:80%;
+    box-shadow: lightgray 5px 5px 25px;
+}
+
+
+/* format page */
+
+label img{
+    width: 100px;
+    height: 150px;
+    border: 2px solid gray ;
+}
+
+label img:checked{
+    border: 4ps solid red;
+}
+
+
+
+
+input[type="radio"] label img:hover{
+    box-shadow: #364155 3px 3px 40px;
+}
+
+
+
+.format-option{
+    width: 50%;
+    text-align: center;
+}
+
+.format-option img{
+    margin:auto;
+}
+
+.format-option input[type="radio"]:checked + label{
+    background-color: #376D48;
+    color: white;
+    border: 5px solid #376D48;
+}
+
+
+.format-option input[type="radio"]{
+    appearance: none;
+}
+
+
+.format-option input[type="radio"]:hover + label{
+    background-color: #535d83;
+    border: 5px solid #535d83;
+    color: white;
+}
+
+.format-option input[type="radio"]:hover:checked + label{
+    background-color: #376D48;
+    color: white;
+    border: 5px solid #376D48;
+}
+
+fieldset.flexbox.formatting{
+    flex-wrap: wrap;
+    justify-content: space-between;
 }

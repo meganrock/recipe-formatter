@@ -42,7 +42,6 @@ app.post('/upload', function(req, res) {
     console.log('Input method:', req.body['recipe-input']);
 
 
-
     let pythonOutput = '';
     let args = ['scraping.py', JSON.stringify({
         ...req.body,
@@ -193,6 +192,8 @@ app.post('/generate-pdf', async function(req, res) {
             // } else if (req.body.format === 'sides') {
             //     cssFile = 'top-bottom.css';
             } else if (req.body.format === 'moms') {
+                cssFile = 'moms-format.css';
+            } else if (req.body.format === 'blue') {
                 cssFile = 'blue.css';
             }
 
@@ -201,16 +202,48 @@ app.post('/generate-pdf', async function(req, res) {
             await page.setContent(customHtml, { waitUntil: 'networkidle0' });
             await page.addStyleTag({ content: cssContent });
 
+
+            // Calculate Letter format dimensions (8.5" x 11") at 96 DPI
+            const pdfWidth = 8.5 * 96; // 816px
+            const pdfHeight = 11 * 96;  // 1056px
+
+            // Set viewport to match PDF dimensions
+            await page.setViewport({
+                width: pdfWidth,
+                height: pdfHeight
+            });
+
+            // Set print media type
+            await page.emulateMediaType('print');
+
+            // Take screenshot with exact PDF dimensions
+            await page.screenshot({
+                path: 'pdf_preview.png',
+                fullPage: false, // Don't use fullPage - use viewport dimensions
+                clip: {
+                    x: 0,
+                    y: 0,
+                    width: pdfWidth,
+                    height: pdfHeight
+                }
+            });
+
             await page.pdf({
                 path: 'custom_document.pdf',
                 format: 'Letter',
                 printBackground: true,
                 displayHeaderFooter: false,
-                
+                margin:  {
+                    
+                },
             });
 
             await browser.close();
             console.log('PDF generated successfully!');
+            res.json({
+                success: true
+            });
+
     } catch (pdfError) {
         console.error('Error generating PDF:', pdfError);
     }

@@ -22,19 +22,23 @@
             </nav>
         </header>
         <main>
-            <h1>formatting</h1>
+            <!-- <h1>formatting</h1> -->
         
             <form class="flexbox">
                 
-                <fieldset class="flex-column">
+                <fieldset class="flexbox formatting">
                     <legend>Choose your format:</legend>
-                    <div>
+                    <div class="format-option">
                         <input type="radio" id="moms" name="recipe-format" value="moms">
-                        <label for="moms"><img src="moms-template.png">Mom's Format</label>
+                        <label for="moms"  class="flex-column"><img src="moms-template.png">Mom's Format</label>
                     </div>
-                    <div>
+                    <div class="format-option">
                         <input type="radio" id="sidebyside" name="recipe-format" value="sidebyside">
-                        <label for="sidebyside"><img src="plain-text-template.png">Plain Text, side by side</label>
+                        <label for="sidebyside"  class="flex-column"><img src="plain-text-template.png">Plain Text, side by side</label>
+                    </div>
+                    <div class="format-option">
+                        <input type="radio" id="blue" name="recipe-format" value="blue">
+                        <label for="blue" class="flex-column"><img src="blue.png"><span>Blue</span></label>
                     </div>
                 </fieldset>
                 <div>
@@ -77,44 +81,7 @@
         
 
 
-        <script>
-        const form = document.querySelector('form');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-
-            const formData = new FormData(form);
-            const category = formData.get('recipe-category');
-            const format = formData.get('recipe-format');
-            
-            window.location.href = 'print.html';
-
-            try {
-                const response = await fetch('http://127.0.0.1:3000/generate-pdf', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                    category: category,
-                    format: format,
-                    recipeHtml: localStorage.getItem('recipe-html')
-                })
-                });
-                const result = await response.json();
-                if (result.success) {
-                    alert('PDF generated successfully!');
-                    
-                } else {
-                    alert('Error generating PDF: ' + result.error);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error generating PDF');
-            }
-        });
-        </script>
+        <script src="format.js"></script>
 
 </body>
 </html>

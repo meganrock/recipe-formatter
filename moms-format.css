@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body{
     margin: 20px;
@@ -52,9 +52,6 @@ ol li{
     height: 20px;
 }
 
-.flex{
-    display:flex;
-}
 
 .main-recipe{
     margin-top: 80px; 
@@ -67,11 +64,11 @@ header{
     font-size: 10px;
 }
 
-header > span {
+header > p {
     margin-left: 475px;
 }
 
-span+span{
+p+p{
     margin-left: 55px;
 }
 
@@ -84,17 +81,6 @@ span+span{
 .directions{
     flex: 3;
     padding:10px;
-} */
+} 
 
 
-.ingredients {
-    color: purple;
-}
-
-.directions {
-    color: green;
-}
-
-h3{
-    color: red;
-}

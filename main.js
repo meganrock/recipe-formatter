@@ -82,61 +82,63 @@ async function handleFormSubmit() {
         }
         if (result.success) {
             const recipeData = JSON.parse(result.pythonOutput.trim());
+            console.log('selected info' + JSON.stringify(selectedInfo));
+            console.log(recipeData);
             // creating custom HTML based on checked inputs
+            let customHtml = createCustomHTML(selectedInfo, recipeData, false);
+            // let customHtml = `
+            // <div class='results-box'>
+            // `
+            // if ((JSON.stringify(selectedInfo)).includes('title')){
+            //     customHtml = customHtml + `\n<h1>${recipeData.title}</h1>`;
+            // }
 
-            let customHtml = `
-            <div class='results-box'>
-            `
-            if ((JSON.stringify(selectedInfo)).includes('title')){
-                customHtml = customHtml + `\n<h1>${recipeData.title}</h1>`;
-            }
+            // if ((JSON.stringify(selectedInfo)).includes('servings')){
+            //     customHtml = customHtml + `\n<p>${recipeData.servings}</p>`;
+            // }
 
-            if ((JSON.stringify(selectedInfo)).includes('servings')){
-                customHtml = customHtml + `\n<p>${recipeData.servings}</p>`;
-            }
+            // if ((JSON.stringify(selectedInfo)).includes('author')){
+            //     customHtml = customHtml + `\n<p>Recipe by: ${recipeData.author}</p>`;
+            // }
 
-            if ((JSON.stringify(selectedInfo)).includes('author')){
-                customHtml = customHtml + `\n<p>Recipe by: ${recipeData.author}</p>`;
-            }
+            // if ((JSON.stringify(selectedInfo)).includes('link')){
+            //     customHtml = customHtml + `\n<p><a href=${recipeData.link} target="_blank">See More</a></p>`;
+            // }
 
-            if ((JSON.stringify(selectedInfo)).includes('link')){
-                customHtml = customHtml + `\n<p><a href=${recipeData.link} target="_blank">See More</a></p>`;
-            }
+            // if ((JSON.stringify(selectedInfo)).includes('prep-time')){
+            //     customHtml = customHtml + `\n<p>Prep Time: ${recipeData.prep_time}</p>`;
+            // }
 
-            if ((JSON.stringify(selectedInfo)).includes('prep-time')){
-                customHtml = customHtml + `\n<p>Prep Time: ${recipeData.prep_time}</p>`;
-            }
+            // if ((JSON.stringify(selectedInfo)).includes('cook-time')){
+            //     customHtml = customHtml + `\n<p>Cook Time: ${recipeData.cook_time}</p>`;
+            // }
 
-            if ((JSON.stringify(selectedInfo)).includes('cook-time')){
-                customHtml = customHtml + `\n<p>Cook Time: ${recipeData.cook_time}</p>`;
-            }
+            // if ((JSON.stringify(selectedInfo)).includes('total-time')){
+            //     customHtml = customHtml + `\n<p>Total Time: ${recipeData.total_time}</span>`;
+            // }
 
-            if ((JSON.stringify(selectedInfo)).includes('total-time')){
-                customHtml = customHtml + `\n<p>Total Time: ${recipeData.total_time}</span>`;
-            }
+            // if ((JSON.stringify(selectedInfo)).includes('ingredients')){
+            //     customHtml = customHtml + `
+            //     <div class="ingredients">
+            //         <h2>Ingredients</h2>
+            //             <ul>
+            //                 ${recipeData.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+            //             </ul>
+            //     </div>`
+            // }
 
-            if ((JSON.stringify(selectedInfo)).includes('ingredients')){
-                customHtml = customHtml + `
-                <div class="ingredients">
-                    <h2>Ingredients</h2>
-                        <ul>
-                            ${recipeData.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
-                        </ul>
-                </div>`
-            }
-
-            if ((JSON.stringify(selectedInfo)).includes('directions')){
-                customHtml = customHtml + `
-                <div class="directions">
-                    <h2>Directions</h2>
-                        <ol>
-                            ${recipeData.directions.map(direction => `<li>${direction}</li>`).join('')}
-                        </ol>
-                </div>`
-            }
-            customHtml = customHtml + `\n
-                </div>
-            `;
+            // if ((JSON.stringify(selectedInfo)).includes('directions')){
+            //     customHtml = customHtml + `
+            //     <div class="directions">
+            //         <h2>Directions</h2>
+            //             <ol>
+            //                 ${recipeData.directions.map(direction => `<li>${direction}</li>`).join('')}
+            //             </ol>
+            //     </div>`
+            // }
+            // customHtml = customHtml + `\n
+            //     </div>
+            // `;
 
 
 
