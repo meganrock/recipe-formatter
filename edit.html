@@ -12,25 +12,19 @@
         <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     </head>
     <body class="homepage">
-        <header>
-            <h1>RECIPE FORMATTER</h1>
-            <nav class="flexbox">
-                <a href="index.html" >Step 1: Upload the recipe</a>
-                <a href="edit.html" class="current-page">Step 2: Edit the recipe</a>
-                <a href="format.html">Step 3: Format the recipe</a>
-                <a href="print.html">Step 4: Print the recipe</a>
-            </nav>
-        </header>
+        <header-component></header-component>
         <main>
-            <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />    
+            <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
             <h1>Editor</h1>
-            <div id="editor">
-                <!-- <p>Core build with no theme, formatting, non-essential modules</p> -->
+            <div class="flex-column" id="edit-page-flex">
+                <div id="editor">
+                </div>
+                <button id="formatButton" class="big-button yes-button">All set! Go to formatting.</button>
             </div>
-
-            <button id="formatButton" class="big-button yes-button">All set! Go to formatting.</button>
+            
 
             <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+            <script src="header.js"></script>
             <script src="populateHTML.js"></script>
             <script src="edit.js"></script>
         </main>

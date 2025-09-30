@@ -184,6 +184,7 @@ app.post('/generate-pdf', async function(req, res) {
     try{
             const browser = await puppeteer.launch({ headless: true });
             const page = await browser.newPage();
+
             const fs = require('fs');
 
             let cssFile;

@@ -12,15 +12,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     </head>
     <body class="homepage">
-        <header>
-            <h1>RECIPE FORMATTER</h1>
-            <nav class="flexbox">
-                <a href="index.html" >Step 1: Upload the recipe</a>
-                <a href="edit.html">Step 2: Edit the recipe</a>
-                <a href="format.html" >Step 3: Format the recipe</a>
-                <a href="print.html" class="current-page">Step 4: Print the recipe</a>
-            </nav>
-        </header>
+        <header-component></header-component>
         <main>
             <div class="flexbox">
                  <div id="print-preview">
@@ -36,7 +28,7 @@
         </main>
         
         
-       
+       <script src="header.js"></script>
         <script>
             let container = document.getElementById('print-preview');
 

@@ -1,86 +1,132 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-body{
-    margin: 20px;
-    background-image: url('https://lh3.googleusercontent.com/d/1zMcC7u3VWXSnQ7kY_Ymqb8uSkuu98O-m=w816-h1056?authuser=0');
-    background-position: contain;
 
+*{
+    font-family: "Poppins", sans-serif !important;
 }
 
+/*style the page overall*/
+body{
+    background-image: url('https://lh3.googleusercontent.com/d/1zMcC7u3VWXSnQ7kY_Ymqb8uSkuu98O-m=w816-h1056?authuser=0') !important;
+    background-position: contain;
+}
+
+.pdf-flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+/*style the recipe name*/
 h1{
+    font-weight: 400;
+    font-size: 20px;
+    color: black;
+    margin-left: 70px;
+    padding-bottom: 10px;
+}
+
+/*style the recipe characteristics section*/
+header{
+    order: -1;
+    display: flex;
+    font-size: 16px;
+    margin-top:8px;
+    margin-left: 50px;
+    height: 25px;
+    padding-bottom: 0;
+}
+
+/*style the recipe characteristics section*/
+header p{
+    font-size: 10px;
+}   
+
+#servings{
+    order: 2;
+    padding: none 20px;
+    margin-left: 50px;
+}
+
+#author{
+    display: none;
+}
+
+#link{
+    order: 1;
+    padding: none 20px;
+    margin-left: 440px;
+}
+
+#prep-time{
+    display: none;
+}
+
+#cook-time{
+    display: none;
+}   
+
+#total-time{
+    display: none;
+}
+
+/*style the ingredients and directions headers*/
+h2{
     color: black;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    font-size: 18px;
-    padding-left: 50px;
+    font-size: 16px;
+    margin-left: 40px;
+    width: 100%;
 }
 
-h2{
-    color: #69418b;
-    font-family: "Poppins", sans-serif;
+/*style the subheadings*/
+h3{
+    font-size: 14px;
+}
+
+/*style the ingredient and directions section of the pdf*/
+#pdf-main-recipe{
+    display: flex;
+    margin-top: 20px;
+}
+
+
+/*style the ingredients section*/
+.ingredients{
+    flex:1;
+    padding:20px;
+    padding-left: 30px;
+
+}
+
+/*style the ingredients list*/
+.ingredients ul{
+    
+}
+
+/*style the ingredients list items*/
+.ingredients ul li{
+    list-style-type: disc;
+    font-size: 12px;
     font-weight: 400;
-    font-size: 13px;
 }
 
-img{
-    width: 200px;
-    justify-content: center;
-}
-
-ul, ol {
-    padding-left: 0px;
-}
-
-ul li{
-    list-style-type: none;
-    font-size: 10px;
-}
-
-li{
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-}
-
-ol li{
-    list-style-type: decimal;
-    font-size: 10px;
-}
-
-.color-stripe{
-    background-color: #69418b;
-    width: 500px;
-    height: 20px;
-}
-
-
-.main-recipe{
-    margin-top: 80px; 
-}
-
-header{
-    padding-top: 5px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 10px;
-}
-
-header > p {
-    margin-left: 475px;
-}
-
-p+p{
-    margin-left: 55px;
-}
-
-.ingredients {
-    flex: 1.5;
-    padding: 10px;
-    padding-left: 50px;
-}
-
+/*style the directions section*/
 .directions{
-    flex: 3;
-    padding:10px;
-} 
+    flex: 2;
+    padding:20px;
+    padding-right: 30px;
+}
 
+/*style the directions list*/
+.directions ol{
+    
+}
 
+/*style the directions list items*/
+.directions ol li{
+    list-style-type: decimal;
+    font-size: 12px;
+    font-weight: 400;
+}

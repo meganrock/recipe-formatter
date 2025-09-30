@@ -12,27 +12,7 @@ header_tags = ["h1", "h2", "h3", "h4", "h5", "h6"]
 ugly_characters = '▢' 
 
 
-
-
-
-# wordpress_classes = ['saltandlavender', 'cookingclassy', 'crazyforcrust', 
-#                      'iheartnaptime', 'ourbestbites', 'scientificallysweet', 
-#                      'asassyspoon', 'alwayseatdessert', 'aspicyperspective', 
-#                      'bakedbyanintrovert', 'biggerbolderbaking', 'blessthismessplease', 
-#                      'savorandsmile', 'foreignfork', 'thedomesticspoon', 'browneyedbaker',
-#                      'cookingwithkarli', 'cookwithmanali', 'cozypeachkitchen', 'dinneratthezoo',
-#                      'displacedhousewife', 'easygayoven', 'easydinnerideas', 'easyfamilyrecipes',
-#                      'favfamilyrecipes', 'fearlessdining', 'feelgoodfoodie',
-#                      'foodiecrush', 'girlwiththeironcast', 'gluesticksblog', 'grilledcheesesocial',
-#                      'healthygirlkitchen', 'ihearteating', 'jessiebakestreats', 'katiebirdbakes']
-
-
 #get url from the form
-
-
-
-
-
 
 # url="https://www.allrecipes.com/recipe/228498/slow-cooker-baby-back-ribs/"
 # inputMethod='text'
@@ -47,6 +27,15 @@ def checkURL(soup):
 def recipe_scraper(url):
     try:
         scraper = scrape_me(url)
+        recipe_name=""
+        ingredients_array = []
+        directions_array = []
+        serving_size=""
+        author=""
+        link=""
+        prep_time=""
+        cook_time=""
+        total_time=""
 
         prep_time = int(scraper.prep_time())
         prep_time_hours = int(prep_time/60)
@@ -84,12 +73,12 @@ def recipe_scraper(url):
             "directions": scraper.instructions_list() if scraper else "",
                     
             "servings": scraper.yields() if scraper else "",
-            "author": scraper.author() if scraper else "",
-            "link": scraper.canonical_url() if scraper else"",
+            "author": 'Recipe by: ' + scraper.author() if scraper else "",
+            "link": scraper.canonical_url() if scraper else "",
 
-            "prep_time": prep_time if scraper else "",
-            "cook_time": cook_time if scraper else "",
-            "total_time": total_time if scraper else "",
+            "prep_time": 'Prep Time: ' + prep_time if scraper else "",
+            "cook_time": 'Cook Time: ' + cook_time if scraper else "",
+            "total_time": 'Total Time: ' + total_time if scraper else "",
 
             "image": scraper.image() if scraper else "",
 
@@ -101,6 +90,16 @@ def recipe_scraper(url):
     
 def wordpress_scraper(url, soup):
     try:
+        recipe_name=""
+        ingredients_array = []
+        directions_array = []
+        serving_size=""
+        author=""
+        link=""
+        prep_time=""
+        cook_time=""
+        total_time=""
+
         recipe_name = soup.find(header_tags, class_="wprm-recipe-name")
         if not (isinstance(recipe_name, str)) and recipe_name:
             recipe_name = recipe_name.text.strip()
@@ -171,24 +170,26 @@ def wordpress_scraper(url, soup):
                 "ingredients": ingredients_array if ingredients_array else [],
                 "directions": directions_array if directions_array else [],
 
-                "servings": serving_size +' Servings' if serving_size else "",
-                "author": author,
-                "link": recipe_link,
+                "servings": serving_size +' servings' if serving_size else "",
+                "author": 'Recipe by: ' + author if author else "",
+                "link": link if link else "",
 
-                "prep_time": prep_time,
-                "cook_time": cook_time,
-                "total_time": total_time,
+                "prep_time": 'Prep Time: ' + prep_time if prep_time else "",
+                "cook_time": 'Cook Time: ' + cook_time if cook_time else "",
+                "total_time": 'Total Time: ' + total_time if total_time else "",
             }
     except Exception as e:
         print(f"WordPress scraping failed: {str(e)}", file=sys.stderr)
         return None
+
+
 
 def parse_recipe_text(recipe_text):
     try:
         recipe_name=""
         ingredients_array = []
         directions_array = []
-        serving_size=""
+        servings=""
         author=""
         link=""
         prep_time=""
@@ -222,7 +223,14 @@ def parse_recipe_text(recipe_text):
             if(re.match(r'Yield:|Servings:|Serves:', item, re.IGNORECASE)):
                 servings = re.split(': ', item)
                 servings = servings[1]
-                servings = str(servings) + " servings"
+                servings = re.sub('servings', '', servings, flags=re.IGNORECASE)
+                servings = str(servings)
+            elif(re.match(r'Recipe by:|Submitted by:', item, re.IGNORECASE)):
+                author = re.split(': ', item)
+                author = author[1]
+            elif(re.match(r'Recipe by |Submitted by ', item, re.IGNORECASE)):
+                author = re.split(' ', item)
+                author = author[1]
             elif(re.match(r'Prep Time:', item, re.IGNORECASE)):
                 prep_time = re.split(': ', item)
                 prep_time = prep_time[1]
@@ -248,7 +256,7 @@ def parse_recipe_text(recipe_text):
             if item == '':
                 ingredients.pop(index)
             # elif (re.match(ingredient_pattern, item)):
-            else:
+        for index, item in enumerate(ingredients):
                 ingredients_array.append(item)
 
 
@@ -266,15 +274,17 @@ def parse_recipe_text(recipe_text):
             directions_array.append(item)
 
         return {
-            "title": recipe_name,
-            "ingredients": ingredients_array,
-            "directions": directions_array,
-            "servings": servings,
-            "author": "",
-            "link": "",
-            "prep_time": prep_time,
-            "cook_time": cook_time,
-            "total_time": total_time,
+            "title": recipe_name if recipe_name else "",
+            "ingredients": ingredients_array if ingredients_array else [],
+            "directions": directions_array if directions_array else [],
+
+            "servings": servings +' servings' if servings else "",
+            "author": 'Recipe by: ' + author if author else "",
+            "link": link if link else "",
+
+            "prep_time": 'Prep Time: ' + prep_time if prep_time else "",
+            "cook_time": 'Cook Time: ' + cook_time if cook_time else "",
+            "total_time": 'Total Time: ' + total_time if total_time else "",
         }
     except Exception as e:
         print(f"Text parsing failed: {str(e)}", file=sys.stderr)
@@ -304,7 +314,6 @@ try:
 
                     if checkURL(soup):
                         recipe_data=wordpress_scraper(url, soup)
-
                     if not recipe_data:
                         recipe_data = {"error": "Could not extract recipe from this URL"}
                         

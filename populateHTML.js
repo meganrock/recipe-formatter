@@ -1,37 +1,37 @@
 function createCustomHTML(selectedInfo, recipeData, subheadingData){
     let customHtml = `
-            <div class='results-box'>
+            <div class='results-box pdf-flex-column'>
             `
             if ((JSON.stringify(selectedInfo)).includes('title')){
-                customHtml = customHtml + `\n<h1>${recipeData.title}</h1>`;
+                customHtml = customHtml + `<h1>${recipeData.title}</h1>`;
             }
 
             customHtml = customHtml + '<header>';
             if ((JSON.stringify(selectedInfo)).includes('servings')){
-                customHtml = customHtml + `\n<p>${recipeData.servings}</p>`;
+                customHtml = customHtml + `<p id="servings">${recipeData.servings}</p>`;
             }
 
             if ((JSON.stringify(selectedInfo)).includes('author')){
-                customHtml = customHtml + `\n<p>Recipe by: ${recipeData.author}</p>`;
+                customHtml = customHtml + `<p id="author">${recipeData.author}</p>`;
             }
 
             if ((JSON.stringify(selectedInfo)).includes('link')){
-                customHtml = customHtml + `\n<p><a href=${recipeData.link} target="_blank">See More</a></p>`;
+                customHtml = customHtml + `<p id="link"><a href=${recipeData.link} target="_blank">See More</a></p>`;
             }
 
             if ((JSON.stringify(selectedInfo)).includes('prep-time')){
-                customHtml = customHtml + `\n<p>Prep Time: ${recipeData.prep_time}</p>`;
+                customHtml = customHtml + `<p id="prep-time">${recipeData.prep_time}</p>`;
             }
 
             if ((JSON.stringify(selectedInfo)).includes('cook-time')){
-                customHtml = customHtml + `\n<p>Cook Time: ${recipeData.cook_time}</p>`;
+                customHtml = customHtml + `<p id="cook-time">${recipeData.cook_time}</p>`;
             }
 
             if ((JSON.stringify(selectedInfo)).includes('total-time')){
-                customHtml = customHtml + `\n<p>Total Time: ${recipeData.total_time}</span>`;
+                customHtml = customHtml + `<p id="total-time">${recipeData.total_time}</span>`;
             }
 
-            customHtml = customHtml + '</header>';
+            customHtml = customHtml + '</header><div id="pdf-main-recipe">';
 
             if (!subheadingData){
                 if ((JSON.stringify(selectedInfo)).includes('ingredients')){
@@ -141,8 +141,8 @@ function createCustomHTML(selectedInfo, recipeData, subheadingData){
             
 
             
-            customHtml = customHtml + `\n
-                </div>
+            customHtml = customHtml + `
+                </div></div>
             `;
     return customHtml;
 }

@@ -5,7 +5,7 @@
 
 html, body{
     height: 100%;
-
+    font-size: 18px;
 }
 
 main{
@@ -19,19 +19,26 @@ main{
 /* flexbox classes*/
 .flexbox {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: top;
 }
+
 
 .flex-column{
     display: flex;
     flex-direction: column;
 }
 
+.flex-column div{
+    margin: 10px none;
+    padding: 10px none;
+}
+
 .centered-flex-column{
     justify-content: center;
     align-items: center;
 }
+
 
 
 
@@ -117,13 +124,19 @@ fieldset div label{
  h1 {
     font-family: "Orelega One", serif;
     font-weight: 400;
-    font-size: 36px;
+    font-size: 2rem;
     color: #364155;
  }
 
  h2{
     font-family: 'Red Hat Display', sans-serif;
-    font-size: 20px;
+    font-size:1.4rem;
+    color: #364155;
+ }
+
+ p{
+    font-family: 'Red Hat Display', sans-serif;
+    font-size:1rem;
     color: #364155;
  }
 
@@ -155,6 +168,10 @@ button[type='submit']{
     height: 25px;
 }
 
+button:hover{
+    cursor: pointer;
+}
+
 
 
 
@@ -169,7 +186,6 @@ header{
 header h1 {
     font-family: "Orelega One", serif;
     font-weight: 400;
-    font-size: 36px;
     width: 100vw;
     height: 10vh;
     line-height: 10vh;
@@ -205,10 +221,12 @@ nav a:any-link{
 
 nav a.current-page:any-link{
     color: #C5DDCC;
-    background-image: url(Vector-2.svg);
+    /* background-image: url(Vector-2.svg); 
     background-size: cover;
-    background-position: center; /* Centers the image within the container */
+    background-position: center; /* Centers the image within the container 
     background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-color: #364155;
+    border-radius: 5px;
 }
 
 
@@ -218,20 +236,25 @@ nav a.current-page:any-link{
 fieldset{
     text-decoration: none;
     border: none;
-    width:20vw;
+    width:25vw;
 }
 
 input, textarea{
     font-family: 'Red Hat Display', sans-serif;
-    font-size: 16;
+    font-size: 1rem;
     font-weight: 400px;
+}
+
+textarea{
+    border-radius: 10px;
+    font-size: 1rem;
 }
 
 #url-input{
     width: 50vw;
-    height: 50px;
+    height: 40px;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 1rem;
 }
 
 
@@ -250,22 +273,24 @@ input, textarea{
 legend {
     font-family: "Orelega One", serif;
     color: #C2785F;
-    font-size: 20px;
+    font-size: 1.2rem;
     border-bottom: 3px solid #C2785F;
     text-align: left;
+    margin-bottom: 5px;
 }
 
 label {
     font-family: "Red Hat Display", sans-serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1rem;
     text-wrap: wrap;
+    margin-bottom: 5px;
 }
 
 label[for="recipe-category"]{
     font-family: "Orelega One", serif;
     color: #C2785F;
-    font-size: 20px;
+    font-size: 1.2rem;
     border-bottom: 3px solid #C2785F;
     text-align: left;
 }
@@ -295,7 +320,10 @@ fieldset:has(.check-group){
   width: 50px;
   height: 50px;
   animation: spin 2s linear infinite;
-  margin: 100px auto;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
 }
 
 @keyframes spin {
@@ -303,23 +331,14 @@ fieldset:has(.check-group){
   100% { transform: rotate(360deg); }
 }
 
-
-
-/*editor*/
-#editor, div[role="toolbar"]{
-    background-color: white;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+#loader-and-message{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
-div[role="toolbar"]{
-    background-color: #A8AEC6;
-}
 
-#editor *{
-    font-family: arial;
-}
 
 
 .results-box{
@@ -329,8 +348,9 @@ div[role="toolbar"]{
 
 #results, #print-preview{
     padding: 20px;
-    width: 50vw;
+    width: 50rem;
 }
+
 
 #results *{
     font-family: Arial, Helvetica, sans-serif;
@@ -348,7 +368,7 @@ div[role="toolbar"]{
 }
 
 #results h1{
-    font-size: 24px;
+    font-size: 1.4rem;
     font-weight: 600px;
 }
 
@@ -360,6 +380,69 @@ div[role="toolbar"]{
 }
 
 
+
+
+
+/* upload recipe page specific formatting */
+
+
+.flexbox.upload-page-flex{
+    justify-content: space-around;
+}
+
+.flexbox#upload-recipe-results{
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+
+#confirm-results{
+    align-self: center;
+}
+
+#recipe-input-area{
+    display: flex;
+    flex-direction: column;
+}
+
+
+#recipe-input-area button, #cookbook-section-dropdown button{
+    margin: 10px;
+    margin-left: auto;
+}
+
+
+/* edit page */
+
+#formatButton{
+    padding: 20px;
+}
+
+
+.flex-column#edit-page-flex{
+    align-items: flex-end;
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*editor*/
+#editor, div[role="toolbar"]{
+    background-color: white;
+    width: 100%;
+
+}
+
+div[role="toolbar"]{
+    background-color: #A8AEC6;
+}
+
+#editor *{
+    font-family: arial;
+}
+
+
+
 /* format page */
 
 label img{
@@ -368,21 +451,14 @@ label img{
     border: 2px solid gray ;
 }
 
-label img:checked{
-    border: 4ps solid red;
-}
-
-
-
-
 input[type="radio"] label img:hover{
     box-shadow: #364155 3px 3px 40px;
+    
 }
 
-
-
 .format-option{
-    width: 50%;
+    width: 200px;
+    height: 200px;
     text-align: center;
 }
 
@@ -390,31 +466,58 @@ input[type="radio"] label img:hover{
     margin:auto;
 }
 
-.format-option input[type="radio"]:checked + label{
-    background-color: #376D48;
-    color: white;
-    border: 5px solid #376D48;
-}
-
-
 .format-option input[type="radio"]{
     appearance: none;
 }
 
-
 .format-option input[type="radio"]:hover + label{
-    background-color: #535d83;
+    /* background-color: #535d83;
     border: 5px solid #535d83;
-    color: white;
+    color: white; */
+    cursor: pointer;
 }
 
-.format-option input[type="radio"]:hover:checked + label{
-    background-color: #376D48;
+.format-option input[type="radio"]:checked + label{
+    /* background-color: #376D48;
     color: white;
-    border: 5px solid #376D48;
+    border: 5px solid #376D48; */
+    border: 2px solid#364155;
+    border-radius: 5px;
+}
+.format-option input[type="radio"]:hover:checked + label{
+    /* background-color: #376D48;
+    color: white;
+    border: 5px solid #376D48; */
+    border: 2px solid#364155;
+    border-radius: 5px;
 }
 
 fieldset.flexbox.formatting{
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    width: 40vw;
+}
+
+#box-of-format-options{
+    width: 50vw;
+    height: 80vh;
+    overflow: auto;
+}
+
+.flex-column:has(select){
+    justify-content: space-evenly;
+}
+
+.flex-col-align-left{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.flex-col-align-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-evenly;
 }

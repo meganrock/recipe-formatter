@@ -12,66 +12,38 @@
         <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     </head>
     <body class="homepage">
-        <header>
-            <h1>RECIPE FORMATTER</h1>
-            <nav class="flexbox">
-                <a href="index.html" >Step 1: Upload the recipe</a>
-                <a href="edit.html">Step 2: Edit the recipe</a>
-                <a href="format.html" class="current-page">Step 3: Format the recipe</a>
-                <a href="print.html">Step 4: Print the recipe</a>
-            </nav>
-        </header>
+        <header-component></header-component>
         <main>
             <!-- <h1>formatting</h1> -->
         
-            <form class="flexbox">
+            <form class="flexbox" id="format-form">
+                <div id="box-of-format-options">
+                    <fieldset class="flexbox formatting">
+                        <legend>Choose your format:</legend>
+                        <div class="format-option">
+                            <input type="radio" id="moms" name="recipe-format" value="moms" checked>
+                            <label for="moms"  class="flex-column"><img src="moms-template.png">Mom's Format</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="sidebyside" name="recipe-format" value="sidebyside">
+                            <label for="sidebyside"  class="flex-column"><img src="plain-text-template.png">Plain Text, side by side</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="blue" name="recipe-format" value="blue">
+                            <label for="blue" class="flex-column"><img src="blue.png"><span>Blue</span></label>
+                        </div>
+                    </fieldset>
+                </div>
                 
-                <fieldset class="flexbox formatting">
-                    <legend>Choose your format:</legend>
-                    <div class="format-option">
-                        <input type="radio" id="moms" name="recipe-format" value="moms">
-                        <label for="moms"  class="flex-column"><img src="moms-template.png">Mom's Format</label>
-                    </div>
-                    <div class="format-option">
-                        <input type="radio" id="sidebyside" name="recipe-format" value="sidebyside">
-                        <label for="sidebyside"  class="flex-column"><img src="plain-text-template.png">Plain Text, side by side</label>
-                    </div>
-                    <div class="format-option">
-                        <input type="radio" id="blue" name="recipe-format" value="blue">
-                        <label for="blue" class="flex-column"><img src="blue.png"><span>Blue</span></label>
-                    </div>
-                </fieldset>
-                <div>
+                <div id="cookbook-section-dropdown" class="flex-column">
                     <div class = "flex-column">
                         <label for="recipe-category">What section of your cookbook will this be in?</label>
                         <select id="recipe-category" name="recipe-category">
                             <option value="no-category" selected>None</option>
-                            <option value="apps">Apps & Snacks</option>
-                            <option value="beverages">Beverages & Blends</option>
-                            <option value="bread">Bread & Rolls</option>
-                            <option value="soup-sammies">Soup & Sammies</option>
-                            <option value="salads">Salads & Dressings</option>
-                            <option value="main-courses">Main Courses</option>
-                            <option value="sauces-sides">Sauces & Sides</option>
-                            <option value="pasta-grains">Pasta & Grains</option>
-                            <option value="mixes-marinades">Mixes & Marinades</option>
-                            <option value="red-meat">Beef & Red Meats</option>
-                            <option value="poultry-pork">Poultry & Pork</option>
-                            <option value="fish">Fish & Seafood</option>
-                            <option value="sweets">Sweets & Treats</option>
-                            <option value="cakes-pies">Cakes & Pies</option>
-                            <option value="cookies">Cookies & Bars</option>
-                            <option value="breakfast">Breakfast & Brunch</option>
-                            <option value="air-fryer">Air Fryer</option>
-                            <option value="slow-cooker">Slow Cooker</option>
-                            <option value="instant-pot">Instant Pot</option>
-                            <option value="seasonal">Seasonal & Holiday</option>
+                            
                         </select>
                     </div>
-                    
-
-
-                <button type="submit">Submit</button>
+                    <button type="submit">Submit</button>
                 </div>
                 
 
@@ -80,7 +52,8 @@
     
         
 
-
+        <script src="header.js"></script>
+        <script src="addLoading.js"></script>
         <script src="format.js"></script>
 
 </body>

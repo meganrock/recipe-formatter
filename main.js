@@ -15,29 +15,48 @@ function getRadioValue() {
         urlInput.style.display = 'none';
         textInput.style.display = 'flex';
     }
-    
     }
+    return selectedRadio.value;
 }
 
 form.addEventListener('change', getRadioValue);
 
 form.addEventListener('submit', (e) => {
-
     e.preventDefault();
     e.stopPropagation();
-    addLoading();
-    handleFormSubmit();
+    
+    if (getRadioValue()=="url"){
+        if (!document.getElementById('url-input').value){
+            alert('Input field is empty!')
+        }
+        else if (document.getElementById('url-input').value){
+            resultsSection.innerHTML='';
+            confirmResults.innerHTML='';
+            if (document.getElementById("loader-and-message")){
+                document.getElementById("loader-and-message").remove();
+            }
+            addLoading('main', 'Reading the recipe...');
+            handleFormSubmit();
+        }
+    }else if(getRadioValue()=="text"){
+        if (!document.getElementById('text-input').value){
+            alert('Input field is empty!')
+        }
+        else if (document.getElementById('text-input').value){
+            resultsSection.innerHTML='';
+            confirmResults.innerHTML='';
+            if (document.getElementById("loader-and-message")){
+                document.getElementById("loader-and-message").remove();
+            }
+            addLoading('main', 'Reading the recipe...');
+            handleFormSubmit();
+        }
+    }
+        
     return false;
 })
 
-function addLoading(){
-    let loadingHTML = `
-        <div class="loader"></div>
-    `
-    resultsSection.innerHTML = "";
-    confirmResults.innerHTML = "";
-    resultsSection.insertAdjacentHTML('afterbegin', loadingHTML);
-}
+
 
 
 async function handleFormSubmit() {
@@ -86,71 +105,14 @@ async function handleFormSubmit() {
             console.log(recipeData);
             // creating custom HTML based on checked inputs
             let customHtml = createCustomHTML(selectedInfo, recipeData, false);
-            // let customHtml = `
-            // <div class='results-box'>
-            // `
-            // if ((JSON.stringify(selectedInfo)).includes('title')){
-            //     customHtml = customHtml + `\n<h1>${recipeData.title}</h1>`;
-            // }
-
-            // if ((JSON.stringify(selectedInfo)).includes('servings')){
-            //     customHtml = customHtml + `\n<p>${recipeData.servings}</p>`;
-            // }
-
-            // if ((JSON.stringify(selectedInfo)).includes('author')){
-            //     customHtml = customHtml + `\n<p>Recipe by: ${recipeData.author}</p>`;
-            // }
-
-            // if ((JSON.stringify(selectedInfo)).includes('link')){
-            //     customHtml = customHtml + `\n<p><a href=${recipeData.link} target="_blank">See More</a></p>`;
-            // }
-
-            // if ((JSON.stringify(selectedInfo)).includes('prep-time')){
-            //     customHtml = customHtml + `\n<p>Prep Time: ${recipeData.prep_time}</p>`;
-            // }
-
-            // if ((JSON.stringify(selectedInfo)).includes('cook-time')){
-            //     customHtml = customHtml + `\n<p>Cook Time: ${recipeData.cook_time}</p>`;
-            // }
-
-            // if ((JSON.stringify(selectedInfo)).includes('total-time')){
-            //     customHtml = customHtml + `\n<p>Total Time: ${recipeData.total_time}</span>`;
-            // }
-
-            // if ((JSON.stringify(selectedInfo)).includes('ingredients')){
-            //     customHtml = customHtml + `
-            //     <div class="ingredients">
-            //         <h2>Ingredients</h2>
-            //             <ul>
-            //                 ${recipeData.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
-            //             </ul>
-            //     </div>`
-            // }
-
-            // if ((JSON.stringify(selectedInfo)).includes('directions')){
-            //     customHtml = customHtml + `
-            //     <div class="directions">
-            //         <h2>Directions</h2>
-            //             <ol>
-            //                 ${recipeData.directions.map(direction => `<li>${direction}</li>`).join('')}
-            //             </ol>
-            //     </div>`
-            // }
-            // customHtml = customHtml + `\n
-            //     </div>
-            // `;
-
-
-
-
-            // customHtml = localStorage.getItem('recipe-html');
 
             
             resultsSection.innerHTML = "";
             confirmResults.innerHTML = "";
+            document.getElementById("loader-and-message").remove();
             resultsSection.insertAdjacentHTML('afterbegin', '<h2>Your recipe text looks like this:</h2>');
             resultsSection.insertAdjacentHTML('beforeend', customHtml);
-            localStorage.setItem('recipe-html', customHtml)
+            localStorage.setItem('recipe-html', customHtml);
             confirmResults.insertAdjacentHTML('afterbegin', `
                 <h2>Does this look good?</h2>
                 <div class="flex-column">
@@ -168,6 +130,7 @@ async function handleFormSubmit() {
         
     } catch (error) {
         console.error('Error:', error);
+        document.getElementById("loader-and-message").remove();
     }
     return false;
 }

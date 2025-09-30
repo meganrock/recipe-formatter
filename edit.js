@@ -47,6 +47,7 @@ function parseEditorHtml(editor_html){
     ingredients_list="";
     cook_time="";
     servings="";
+    author="";
     link="";
     in_ingredients = false;
     in_directions = false;
@@ -80,6 +81,8 @@ function parseEditorHtml(editor_html){
                 cook_time = item.textContent;
             } else if (item.textContent.toLowerCase().includes('total time')){
                 total_time = item.textContent;
+            } else if (item.textContent.toLowerCase().includes('recipe by')){
+                author = item.textContent;
             }
         } else if (item.tagName=="A"){
             link = item.textContent;
@@ -123,7 +126,7 @@ recipeData = {
     "ingredients": ingredients_array,
     "directions": directions_array,
     "servings": servings,
-    "author": "",
+    "author": author,
     "link": link,
     "prep_time": prep_time,
     "cook_time": cook_time,
@@ -140,6 +143,10 @@ if (recipe_name){
 if (servings){
    selectedInfo.push('servings');
 }
+if (author){
+   selectedInfo.push('author');
+}
+
 if (link){
     selectedInfo.push('link');
 }

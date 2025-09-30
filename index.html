@@ -12,18 +12,12 @@
         <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     </head>
     <body class="homepage">
-        <header>
-            <h1>RECIPE FORMATTER</h1>
-            <nav class="flexbox">
-                <a href="index.html" class="current-page">Step 1: Upload the recipe</a>
-                <a href="edit.html">Step 2: Edit the recipe</a>
-                <a href="format.html">Step 3: Format the recipe</a>
-                <a href="print.html">Step 4: Print the recipe</a>
-            </nav>
-        </header>
+        
+        <header-component></header-component>
+       
         <main>
             <section>
-                <div class="flexbox">
+                <div class="flexbox upload-page-flex">
                     <div>
                         <form id="recipe-text">
                         <!-- <div class="flexbox recipe-input"></div> -->
@@ -91,14 +85,14 @@
                         </fieldset>
                     </div>
                     <div id="recipe-input-area">
-                        <input type="text" name="recipe-url" size="100" placeholder="Type or paste URL here" id="url-input"></input>
-                        <textarea name="recipe-text" rows="30" cols="90" placeholder="Type or paste recipe text here" id="text-input"></textarea>
+                        <input type="text" name="recipe-url" size="100" placeholder="  Type or paste URL here" id="url-input"></input>
+                        <textarea name="recipe-text" rows="30" cols="90" placeholder="  Type or paste recipe text here" id="text-input"></textarea>
                         <button type="submit">Submit</button>
                     </div>      
                 </form>
                 </div>
             </section>
-            <div class="flexbox">
+            <div class="flexbox" id="upload-recipe-results">
                 <section id="results">
                 <!-- Recipe content will go here -->
                 </section>
@@ -107,6 +101,8 @@
             </div>
         </main>
     </body>
+    <script src="header.js"></script>
+    <script src="addLoading.js"></script>
     <script src="populateHTML.js"></script>
     <script src="main.js"></script>
 </html>
