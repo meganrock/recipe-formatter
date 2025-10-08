@@ -159,7 +159,7 @@ def wordpress_scraper(url, soup):
             text = re.sub(ugly_characters, "", item.text.strip())
             directions_array.append(item.text.strip())
 
-        recipe_link = url
+        link = url
 
         author = soup.find("span", class_="wprm-recipe-author")
         if not (isinstance(author, str)) and author:

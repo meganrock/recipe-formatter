@@ -17,8 +17,8 @@
        
         <main>
             <section>
-                <div class="flexbox upload-page-flex">
-                    <div>
+                <div class="flex-row upload-page-flex">
+                    <div class="flex-column" id="input-inputs">
                         <form id="recipe-text">
                         <!-- <div class="flexbox recipe-input"></div> -->
                         <fieldset>
@@ -35,64 +35,69 @@
                         
                         <fieldset>
                             <legend>What information do you want to include on your recipe?</legend>
-                        
-                            <div class="check-group">
-                                <div>
-                                    <input type="checkbox" id="title" name="recipe-info[]" value="title" checked>
-                                    <label for="title">Title</label>
+                            <div id="recipe-check-groups" class="flex-row flex-spaced">
+                                <div class="check-group">
+                                    <div>
+                                        <input type="checkbox" id="title" name="recipe-info[]" value="title" checked>
+                                        <label for="title">Title</label>
+                                    </div>
+                                    
+                                    <div>
+                                        <input type="checkbox" id="ingredients" name="recipe-info[]" value="ingredients" checked>
+                                        <label for="ingredients">Ingredients</label>
+                                    </div>
+                                    
+                                    <div>
+                                        <input type="checkbox" id="directions" name="recipe-info[]" value="directions" checked>
+                                        <label for="directions">Directions</label>
+                                    </div> 
+                                
+                                    <div>
+                                        <input type="checkbox" id="servings" name="recipe-info[]" value="servings" checked>
+                                        <label for="servings">Servings</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="author" name="recipe-info[]" value="author">
+                                        <label for="author">Author</label>
+                                    </div>
+                                    
                                 </div>
                                 
-                                <div>
-                                    <input type="checkbox" id="ingredients" name="recipe-info[]" value="ingredients" checked>
-                                    <label for="ingredients">Ingredients</label>
+                                <div class="check-group"> 
+                                    <div>
+                                        <input type="checkbox" id="prep-time" name="recipe-info[]" value="prep-time" >
+                                        <label for="prep-time">Prep Time</label>
+                                    </div>
+                                    
+                                    <div>
+                                        <input type="checkbox" id="cook-time" name="recipe-info[]" value="cook-time" >
+                                        <label for="cook-time">Cook Time</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="total-time" name="recipe-info[]" value="total-time" >
+                                        <label for="total-time">Total Time</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="link" name="recipe-info[]" value="link">
+                                        <label for="link">Link</label>
+                                    </div>   
                                 </div>
-                                
-                                <div>
-                                    <input type="checkbox" id="directions" name="recipe-info[]" value="directions" checked>
-                                    <label for="directions">Directions</label>
-                                </div> 
-                            
-                                <div>
-                                    <input type="checkbox" id="servings" name="recipe-info[]" value="servings" checked>
-                                    <label for="servings">Servings</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="author" name="recipe-info[]" value="author">
-                                    <label for="author">Author</label>
-                                </div>
-                                
                             </div>
-                            
-                            <div class="check-group"> 
-                                <div>
-                                    <input type="checkbox" id="prep-time" name="recipe-info[]" value="prep-time" >
-                                    <label for="prep-time">Prep Time</label>
-                                </div>
-                                
-                                <div>
-                                    <input type="checkbox" id="cook-time" name="recipe-info[]" value="cook-time" >
-                                    <label for="cook-time">Cook Time</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="total-time" name="recipe-info[]" value="total-time" >
-                                    <label for="total-time">Total Time</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="link" name="recipe-info[]" value="link">
-                                    <label for="link">Link</label>
-                                </div>   
-                            </div> 
+                             
                         </fieldset>
                     </div>
-                    <div id="recipe-input-area">
+                    <div class="flex-column" id="recipe-input-area">
                         <input type="text" name="recipe-url" size="100" placeholder="  Type or paste URL here" id="url-input"></input>
-                        <textarea name="recipe-text" rows="30" cols="90" placeholder="  Type or paste recipe text here" id="text-input"></textarea>
+                        <div id="text-input-area" class="flex-column flex-spaced">
+                            <img src="images\text-input-tips.svg" id="input-text-tips">
+                            <textarea name="recipe-text" rows="30" cols="90" id="text-input" placeholder="  Type or paste recipe text here"></textarea>
+                        </div>
                         <button type="submit">Submit</button>
                     </div>      
                 </form>
                 </div>
             </section>
-            <div class="flexbox" id="upload-recipe-results">
+            <div class="flex-row" id="upload-recipe-results">
                 <section id="results">
                 <!-- Recipe content will go here -->
                 </section>

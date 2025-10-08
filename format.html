@@ -14,23 +14,33 @@
     <body class="homepage">
         <header-component></header-component>
         <main>
-            <!-- <h1>formatting</h1> -->
-        
-            <form class="flexbox" id="format-form">
+            <form class="flex-row flex-spaced flex-align-start" id="format-form">
                 <div id="box-of-format-options">
-                    <fieldset class="flexbox formatting">
+                    <fieldset class="flex-row formatting">
                         <legend>Choose your format:</legend>
                         <div class="format-option">
                             <input type="radio" id="moms" name="recipe-format" value="moms" checked>
-                            <label for="moms"  class="flex-column"><img src="moms-template.png">Mom's Format</label>
+                            <label for="moms"  class="flex-column"><img src="images\moms-template.png">Mom's Format</label>
                         </div>
                         <div class="format-option">
-                            <input type="radio" id="sidebyside" name="recipe-format" value="sidebyside">
-                            <label for="sidebyside"  class="flex-column"><img src="plain-text-template.png">Plain Text, side by side</label>
+                            <input type="radio" id="sidebysideserif" name="recipe-format" value="sidebysideserif">
+                            <label for="sidebysideserif"  class="flex-column"><img src="images\serif-side.png">Serif font - side by side</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="sidebysidesans" name="recipe-format" value="sidebysidesans">
+                            <label for="sidebysidesans"  class="flex-column"><img src="images\sans-serif-side.png">Sans serif font - side by side</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="topbottomserif" name="recipe-format" value="topbottomserif">
+                            <label for="topbottomserif"  class="flex-column"><img src="images\serif-top-bottom.png">Serif font - Top and Bottom</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="topbottomsans" name="recipe-format" value="topbottomsans">
+                            <label for="topbottomsans"  class="flex-column"><img src="images\sans-top-bottom.png">Sans serif font - Top and Bottom</label>
                         </div>
                         <div class="format-option">
                             <input type="radio" id="blue" name="recipe-format" value="blue">
-                            <label for="blue" class="flex-column"><img src="blue.png"><span>Blue</span></label>
+                            <label for="blue" class="flex-column"><img src="images\blue.png"><span>Blue</span></label>
                         </div>
                     </fieldset>
                 </div>
@@ -39,20 +49,39 @@
                     <div class = "flex-column">
                         <label for="recipe-category">What section of your cookbook will this be in?</label>
                         <select id="recipe-category" name="recipe-category">
-                            <option value="no-category" selected>None</option>
-                            
+                            <option value="none">None</option>
+                            <option value="apps">Apps & Snacks</option>
+                            <option value="beverages">Beverages & Blends</option>
+                            <option value="bread">Bread & Rolls</option>
+                            <option value="soup-sammies">Soup & Sammies</option>
+                            <option value="salads">Salads & Dressings</option>
+                            <option value="main-courses">Main Courses</option>
+                            <option value="sauces-sides">Sauces & Sides</option>
+                            <option value="pasta-grains">Pasta & Grains</option>
+                            <option value="mixes-marinades">Mixes & Marinades</option>
+                            <option value="red-meat">Beef & Red Meats</option>
+                            <option value="poultry-pork">Poultry & Pork</option>
+                            <option value="fish">Fish & Seafood</option>
+                            <option value="sweets">Sweets & Treats</option>
+                            <option value="cakes-pies">Cakes & Pies</option>
+                            <option value="cookies">Cookies & Bars</option>
+                            <option value="breakfast">Breakfast & Brunch</option>
+                            <option value="air-fryer">Air Fryer</option>
+                            <option value="slow-cooker">Slow Cooker</option>
+                            <option value="instant-pot">Instant Pot</option>
+                            <option value="seasonal">Seasonal & Holiday</option>
+
                         </select>
                     </div>
                     <button type="submit">Submit</button>
                 </div>
-                
-
             </form>
         </main>
     
         
 
         <script src="header.js"></script>
+        <script src="addCategory.js"></script>
         <script src="addLoading.js"></script>
         <script src="format.js"></script>
 

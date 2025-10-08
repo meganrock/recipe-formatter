@@ -1,0 +1,135 @@
+*{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+html{
+    font-size: 16px;
+}
+
+/*style the page overall*/
+body{
+    background-color: #ebded4;
+}
+
+.pdf-flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+/*style the recipe name*/
+h1{
+    color: #e8efff;
+    text-align: center;
+    width: 100%;
+    height: 75px;
+    line-height: 75px;
+    padding: 0px;
+    font-size: 1.4rem;
+    background-color: #0d2d6c;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/*style the recipe characteristics section*/
+header{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+
+}
+
+/*style the recipe characteristics section*/
+header p{
+    color: #0d2d6c;
+    background-color: #9cb6f2;
+    border-radius: 50px;
+    border: 2px solid #0d2d6c;
+    width: 20vw;
+    text-align: center;
+    padding: 5px;
+    align-self: center;
+    justify-content: center;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+#servings{
+
+}
+
+#author{
+
+}
+
+#link{
+
+}
+
+#prep-time{
+
+}
+
+#cook-time{
+
+}
+
+#total-time{
+
+}
+
+/*style the ingredients and directions headers*/
+h2{
+    color: #0d2d6c;
+}
+
+/*style the subheadings*/
+h3{
+    color: #0d2d6c;
+}
+
+/*style the ingredient and directions section of the pdf*/
+#pdf-main-recipe{
+
+}
+
+/*style the ingredients section*/
+.ingredients{
+    width: 90%;
+    margin: 0 auto;
+}
+
+/*style the ingredients list*/
+.ingredients ul{
+    background-color: #e8efff;
+    border: 2px solid #0d2d6c;
+    border-radius: 38px;
+    padding: 20px;
+}
+
+/*style the ingredients list items*/
+.ingredients ul li{
+    font-size: 0.8rem;
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+/*style the directions section*/
+.directions{
+    width: 90%;
+    margin: 0 auto;
+}
+
+/*style the directions list*/
+.directions ol{
+    background-color: #e8efff;
+    border: 2px solid #0d2d6c;
+    border-radius: 38px;
+    padding: 20px;
+}
+
+/*style the directions list items*/
+.directions ol li{
+    list-style-type: decimal;
+    font-size: 0.8rem;
+    list-style-position: inside;
+}

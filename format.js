@@ -2,6 +2,7 @@ let formatSelection = document.getElementById('box-of-format-options');
 const formatOptions = document.querySelectorAll('input[name="recipe-format"]');
 
 mom_format_categories = `
+    <option value="none">None</option>
     <option value="apps">Apps & Snacks</option>
     <option value="beverages">Beverages & Blends</option>
     <option value="bread">Bread & Rolls</option>
@@ -30,7 +31,12 @@ formatOptions.forEach(option => {
         selectedFormat = this.value
       }
       if (selectedFormat == 'moms'){
+        document.getElementById("recipe-category").innerHTML="";
         document.getElementById("recipe-category").insertAdjacentHTML('beforeend', mom_format_categories);
+      }
+      else{
+        document.getElementById("recipe-category").innerHTML="";
+        document.getElementById("recipe-category").insertAdjacentHTML('beforeend', `<option value="none">None</option>`);
       }
     });
 });
@@ -49,9 +55,8 @@ const form = document.querySelector('form');
             const formData = new FormData(form);
             const format = formData.get('recipe-format');
             const category = formData.get('recipe-category');
-            
-            
-            // window.location.href = 'print.html';
+
+
 
             try {
                 const response = await fetch('http://127.0.0.1:3000/generate-pdf', {
@@ -62,7 +67,8 @@ const form = document.querySelector('form');
                     body: JSON.stringify({
                     category: category,
                     format: format,
-                    recipeHtml: localStorage.getItem('recipe-html')
+                    recipeHtml: addCategory(category)
+                    // recipeHtml: localStorage.getItem('recipe-html')
                 })
                 });
                 const result = await response.json();

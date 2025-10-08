@@ -7,7 +7,7 @@ function getRadioValue() {
   if (selectedRadio) {
     const radioValue = selectedRadio.value;
     urlInput = document.getElementById('url-input');
-    textInput = document.getElementById('text-input');
+    textInput = document.getElementById('text-input-area');
     if (radioValue == "url"){
         urlInput.style.display = 'block';
         textInput.style.display = 'none';
@@ -131,6 +131,7 @@ async function handleFormSubmit() {
     } catch (error) {
         console.error('Error:', error);
         document.getElementById("loader-and-message").remove();
+        alert(`Sorry, our site can't process this recipe.`)
     }
     return false;
 }

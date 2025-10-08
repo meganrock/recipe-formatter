@@ -188,15 +188,22 @@ app.post('/generate-pdf', async function(req, res) {
             const fs = require('fs');
 
             let cssFile;
-            if (req.body.format === 'sidebyside') {
-                cssFile = 'side-by-side.css';
-            // } else if (req.body.format === 'sides') {
-            //     cssFile = 'top-bottom.css';
+            if (req.body.format === 'sidebysideserif') {
+                cssFile = 'recipe_template_css/side-by-side-serif.css';
+            } else if (req.body.format === 'sidebysidesans') {
+                cssFile = 'recipe_template_css/side-by-side-sans.css';
             } else if (req.body.format === 'moms') {
-                cssFile = 'moms-format.css';
+                cssFile = 'recipe_template_css/moms-format.css';
             } else if (req.body.format === 'blue') {
-                cssFile = 'blue.css';
+                cssFile = 'recipe_template_css/blue.css';
+            } else if (req.body.format === 'topbottomsans') {
+                cssFile = 'recipe_template_css/top-and-bottom-sans.css';
+            } else if (req.body.format === 'topbottomserif') {
+                cssFile = 'recipe_template_css/top-and-bottom-serif.css';
             }
+
+
+
 
             let cssContent = fs.readFileSync(cssFile, 'utf8');
             let customHtml = req.body.recipeHtml;

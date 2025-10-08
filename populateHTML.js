@@ -7,17 +7,12 @@ function createCustomHTML(selectedInfo, recipeData, subheadingData){
             }
 
             customHtml = customHtml + '<header>';
-            if ((JSON.stringify(selectedInfo)).includes('servings')){
-                customHtml = customHtml + `<p id="servings">${recipeData.servings}</p>`;
-            }
+            
 
             if ((JSON.stringify(selectedInfo)).includes('author')){
                 customHtml = customHtml + `<p id="author">${recipeData.author}</p>`;
             }
 
-            if ((JSON.stringify(selectedInfo)).includes('link')){
-                customHtml = customHtml + `<p id="link"><a href=${recipeData.link} target="_blank">See More</a></p>`;
-            }
 
             if ((JSON.stringify(selectedInfo)).includes('prep-time')){
                 customHtml = customHtml + `<p id="prep-time">${recipeData.prep_time}</p>`;
@@ -28,7 +23,15 @@ function createCustomHTML(selectedInfo, recipeData, subheadingData){
             }
 
             if ((JSON.stringify(selectedInfo)).includes('total-time')){
-                customHtml = customHtml + `<p id="total-time">${recipeData.total_time}</span>`;
+                customHtml = customHtml + `<p id="total-time">${recipeData.total_time}</p>`;
+            }
+
+            if ((JSON.stringify(selectedInfo)).includes('servings')){
+                customHtml = customHtml + `<p id="servings">${recipeData.servings}</p>`;
+            }
+
+            if ((JSON.stringify(selectedInfo)).includes('link')){
+                customHtml = customHtml + `<p id="link"><a href=${recipeData.link} target="_blank">See More</a></p>`;
             }
 
             customHtml = customHtml + '</header><div id="pdf-main-recipe">';
