@@ -64,7 +64,7 @@ const form = document.querySelector('form');
             }
 
             try {
-                const response = await fetch('http://127.0.0.1:3000/generate-pdf', {
+                const response = await fetch('/generate-pdf', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
