@@ -1,10 +1,7 @@
 FROM node:23-alpine
 
-# Install Python and pip
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    && rm -rf /var/lib/apt/lists/*
+# Install Python and pip (Alpine uses apk, not apt-get)
+RUN apk add --no-cache python3 py3-pip
 
 WORKDIR /app
 
@@ -17,7 +14,6 @@ RUN npm install
 # Install Python dependencies
 RUN pip3 install --break-system-packages beautifulsoup4 requests recipe-scrapers
 
-# Copy all project files
 COPY . .
 
 # Use Railway's PORT environment variable
