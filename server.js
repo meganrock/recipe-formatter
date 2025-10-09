@@ -103,7 +103,11 @@ app.post('/generate-pdf', async function(req, res) {
     console.log('PDF generation endpoint hit with data:', req.body);
     
     try{
-            const browser = await puppeteer.launch({ headless: true });
+            const browser = await puppeteer.launch({ 
+                headless: true,
+                executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium-browser',
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            });
             const page = await browser.newPage();
 
             const fs = require('fs');
