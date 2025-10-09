@@ -8,8 +8,7 @@
 
 /*style the page overall*/
 body{
-    background-image: url('https://lh3.googleusercontent.com/d/1zMcC7u3VWXSnQ7kY_Ymqb8uSkuu98O-m=w816-h1056?authuser=0') !important;
-    background-position: contain;
+    padding-top: 20px;
 }
 
 .pdf-flex-column{
@@ -24,7 +23,24 @@ h1{
     color: black;
     margin-left: 70px;
     padding-bottom: 10px;
+    width: 80%;
+
 }
+
+.flex-row{
+    display: flex;
+}
+
+
+.colored-block{
+    background-color: red;
+    height: 20px;
+    width: 80%;
+}
+#header-underline{
+    width: 80%;
+}
+
 
 /*style the recipe characteristics section*/
 header{
@@ -76,8 +92,9 @@ h2{
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: 16px;
-    margin-left: 40px;
     width: 100%;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 /*style the subheadings*/
@@ -89,6 +106,7 @@ h3{
 #pdf-main-recipe{
     display: flex;
     margin-top: 20px;
+    height: 75%;
 }
 
 
@@ -97,6 +115,8 @@ h3{
     flex:1;
     padding:20px;
     padding-left: 30px;
+    padding-right: 30px;
+    border-right: 2px solid black;
 
 }
 

@@ -150,3 +150,11 @@ function createCustomHTML(selectedInfo, recipeData, subheadingData){
     return customHtml;
 }
 
+function addMomStyle(storedHTML){
+    separate_HTML = storedHTML.split("</header>")
+    separate_HTML[0] = separate_HTML[0] + `</header><div class="flex-row"><div class="colored-block" id="header-underline"></div><img src="https://t4.ftcdn.net/jpg/02/90/84/47/360_F_290844781_V4hoIL3E291xvY5nEL7NCaWIoCIQxHfI.jpg" class="category-image" width="70px" height="70px"></div> `;
+    customHTML = separate_HTML[0] + separate_HTML[1];
+    console.log(customHTML);
+    return customHTML;
+}
+

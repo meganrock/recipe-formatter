@@ -56,7 +56,12 @@ const form = document.querySelector('form');
             const format = formData.get('recipe-format');
             const category = formData.get('recipe-category');
 
-
+            console.log(format);
+            if (format=="moms"){
+                newrecipeHTML = addMomStyle(localStorage.getItem('recipe-html'));
+            } else {
+                newrecipeHTML=localStorage.getItem('recipe-html');
+            }
 
             try {
                 const response = await fetch('http://127.0.0.1:3000/generate-pdf', {
@@ -67,8 +72,7 @@ const form = document.querySelector('form');
                     body: JSON.stringify({
                     category: category,
                     format: format,
-                    recipeHtml: addCategory(category)
-                    // recipeHtml: localStorage.getItem('recipe-html')
+                    recipeHtml: newrecipeHTML
                 })
                 });
                 const result = await response.json();
