@@ -134,8 +134,7 @@ app.post('/generate-pdf', async function(req, res) {
             let customHtml = req.body.recipeHtml;
             await page.setContent(customHtml, { waitUntil: 'networkidle0' });
             await page.addStyleTag({ content: cssContent });
-            await page.waitForSelector('img.category-image');
-
+        
 
             // Calculate Letter format dimensions (8.5" x 11") at 96 DPI
             const pdfWidth = 8.5 * 96; // 816px
