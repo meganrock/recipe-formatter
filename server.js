@@ -162,7 +162,7 @@ app.post('/generate-pdf', async function(req, res) {
             });
 
             await page.pdf({
-                path: 'custom_document.pdf',
+                path: 'custom_recipe.pdf',
                 format: 'Letter',
                 printBackground: true,
                 displayHeaderFooter: false,
