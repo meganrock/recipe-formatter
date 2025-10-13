@@ -2,27 +2,9 @@ let formatSelection = document.getElementById('box-of-format-options');
 const formatOptions = document.querySelectorAll('input[name="recipe-format"]');
 
 mom_format_categories = `
-    <option value="none">None</option>
     <option value="apps">Apps & Snacks</option>
-    <option value="beverages">Beverages & Blends</option>
     <option value="bread">Bread & Rolls</option>
-    <option value="soup-sammies">Soup & Sammies</option>
-    <option value="salads">Salads & Dressings</option>
     <option value="main-courses">Main Courses</option>
-    <option value="sauces-sides">Sauces & Sides</option>
-    <option value="pasta-grains">Pasta & Grains</option>
-    <option value="mixes-marinades">Mixes & Marinades</option>
-    <option value="red-meat">Beef & Red Meats</option>
-    <option value="poultry-pork">Poultry & Pork</option>
-    <option value="fish">Fish & Seafood</option>
-    <option value="sweets">Sweets & Treats</option>
-    <option value="cakes-pies">Cakes & Pies</option>
-    <option value="cookies">Cookies & Bars</option>
-    <option value="breakfast">Breakfast & Brunch</option>
-    <option value="air-fryer">Air Fryer</option>
-    <option value="slow-cooker">Slow Cooker</option>
-    <option value="instant-pot">Instant Pot</option>
-    <option value="seasonal">Seasonal & Holiday</option>
 `
 
 formatOptions.forEach(option => {
@@ -43,8 +25,6 @@ formatOptions.forEach(option => {
 
 
 
-
-
 // form submission
 
 const form = document.querySelector('form');
@@ -57,11 +37,8 @@ const form = document.querySelector('form');
             const category = formData.get('recipe-category');
 
             console.log(format);
-            if (format=="moms"){
-                newrecipeHTML = addMomStyle(localStorage.getItem('recipe-html'));
-            } else {
-                newrecipeHTML=localStorage.getItem('recipe-html');
-            }
+            newrecipeHTML=localStorage.getItem('recipe-html');
+        
 
             try {
                 const response = await fetch('/generate-pdf', {

@@ -118,7 +118,14 @@ app.post('/generate-pdf', async function(req, res) {
             } else if (req.body.format === 'sidebysidesans') {
                 cssFile = 'recipe_template_css/side-by-side-sans.css';
             } else if (req.body.format === 'moms') {
-                cssFile = 'recipe_template_css/moms-format.css';
+                if (req.body.category == 'apps'){
+                    cssFile = 'recipe_template_css/moms-format-apps.css';
+                } else if (req.body.category == 'bread'){
+                    cssFile = 'recipe_template_css/moms-format-bread.css';
+                } else if (req.body.category == 'main-courses'){
+                    cssFile = 'recipe_template_css/moms-format-main.css';
+                } 
+                
             } else if (req.body.format === 'blue') {
                 cssFile = 'recipe_template_css/blue.css';
             } else if (req.body.format === 'topbottomsans') {

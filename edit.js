@@ -4,8 +4,8 @@ const toolbarOptions = [
 
 
 [{ 'header': 1 }, { 'header': 2 }, { 'header': 3 }],
-[{ 'list': 'ordered'}, { 'list': 'bullet' }],
-['link', 'image'],
+[{ 'list': 'bullet' }, { 'list': 'ordered'}],
+// ['link', 'image'],
 // [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
 
 [{ 'header': [1, 2, 3, false] }],
