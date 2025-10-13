@@ -9,7 +9,7 @@
 /*style the page overall*/
 body{
     padding-top: 10px;
-    background-image: url('https://recipe-formatter-production.up.railway.app/images/template-css-backgrounds/main-courses-background.svg');
+    background-image: url('https://recipe-formatter.up.railway.app/images/template-css-backgrounds/main-courses-background.svg');
 }
 
 .pdf-flex-column{

@@ -9,7 +9,7 @@
 /*style the page overall*/
 body{
     padding-top: 10px;
-    background-image: url('https://recipe-formatter-production.up.railway.app/images/template-css-backgrounds/bread-rolls-background.svg');
+    background-image: url('https://recipe-formatter.up.railway.app/images/template-css-backgrounds/bread-rolls-background.svg');
 }
 
 .pdf-flex-column{
